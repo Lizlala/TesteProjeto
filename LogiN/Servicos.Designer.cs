@@ -28,19 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaServicos));
-            btnAbrirCadastro = new Button();
+            btnAbrirCadastroS = new Button();
             dgvServicos = new DataGridView();
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             pictureBox2 = new PictureBox();
-            txtBusca = new TextBox();
+            txtBuscaS = new TextBox();
             label3 = new Label();
-            label2 = new Label();
             panel1 = new Panel();
             btnServicosS = new Button();
             label1 = new Label();
@@ -51,14 +50,18 @@
             panelCadastroS = new Panel();
             label8 = new Label();
             CadastrarNovoCliente = new GroupBox();
+            cmbTipodeServicoS = new ComboBox();
             label10 = new Label();
-            btnVoltar = new Button();
+            btnVoltarS = new Button();
             btnSalvarS = new Button();
-            txtTelefone = new TextBox();
+            txtValorS = new TextBox();
             label5 = new Label();
             label7 = new Label();
             label6 = new Label();
-            TipodeServicoS = new ComboBox();
+            btnEditarS = new Button();
+            btnExcluirS = new Button();
+            groupBox2 = new GroupBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvServicos).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -66,130 +69,119 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelCadastroS.SuspendLayout();
             CadastrarNovoCliente.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
-            // btnAbrirCadastro
+            // btnAbrirCadastroS
             // 
-            btnAbrirCadastro.BackColor = Color.FromArgb(191, 165, 187);
-            btnAbrirCadastro.FlatAppearance.BorderSize = 0;
-            btnAbrirCadastro.FlatAppearance.MouseDownBackColor = Color.FromArgb(191, 165, 187);
-            btnAbrirCadastro.FlatAppearance.MouseOverBackColor = Color.FromArgb(191, 165, 187);
-            btnAbrirCadastro.FlatStyle = FlatStyle.Flat;
-            btnAbrirCadastro.Font = new Font("Century Gothic", 12F);
-            btnAbrirCadastro.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAbrirCadastro.Location = new Point(1062, 46);
-            btnAbrirCadastro.Margin = new Padding(3, 2, 3, 2);
-            btnAbrirCadastro.Name = "btnAbrirCadastro";
-            btnAbrirCadastro.Size = new Size(188, 37);
-            btnAbrirCadastro.TabIndex = 24;
-            btnAbrirCadastro.Text = "Novo serviço";
-            btnAbrirCadastro.UseVisualStyleBackColor = false;
+            btnAbrirCadastroS.BackColor = Color.FromArgb(191, 165, 187);
+            btnAbrirCadastroS.FlatAppearance.BorderSize = 0;
+            btnAbrirCadastroS.FlatAppearance.MouseDownBackColor = Color.FromArgb(191, 165, 187);
+            btnAbrirCadastroS.FlatAppearance.MouseOverBackColor = Color.FromArgb(191, 165, 187);
+            btnAbrirCadastroS.FlatStyle = FlatStyle.Flat;
+            btnAbrirCadastroS.Font = new Font("Century Gothic", 12F);
+            btnAbrirCadastroS.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAbrirCadastroS.Location = new Point(818, 38);
+            btnAbrirCadastroS.Name = "btnAbrirCadastroS";
+            btnAbrirCadastroS.Size = new Size(215, 49);
+            btnAbrirCadastroS.TabIndex = 24;
+            btnAbrirCadastroS.Text = "Novo serviço";
+            btnAbrirCadastroS.UseVisualStyleBackColor = false;
+            btnAbrirCadastroS.Click += btnAbrirCadastroS_Click;
             // 
             // dgvServicos
             // 
             dgvServicos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvServicos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvServicos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvServicos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvServicos.BackgroundColor = Color.White;
             dgvServicos.BorderStyle = BorderStyle.None;
             dgvServicos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvServicos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvServicos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvServicos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvServicos.ColumnHeadersHeight = 50;
             dgvServicos.Columns.AddRange(new DataGridViewColumn[] { Column2, Column3 });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvServicos.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvServicos.DefaultCellStyle = dataGridViewCellStyle6;
             dgvServicos.EnableHeadersVisualStyles = false;
-            dgvServicos.Location = new Point(350, 219);
-            dgvServicos.Margin = new Padding(3, 2, 3, 2);
+            dgvServicos.Location = new Point(375, 404);
             dgvServicos.Name = "dgvServicos";
             dgvServicos.RowHeadersVisible = false;
             dgvServicos.RowHeadersWidth = 51;
             dgvServicos.RowTemplate.Height = 40;
             dgvServicos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvServicos.Size = new Size(898, 411);
+            dgvServicos.Size = new Size(1055, 548);
             dgvServicos.TabIndex = 25;
-            dgvServicos.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Column2
             // 
             Column2.HeaderText = "Tipo de Serviço";
+            Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
             // 
             // Column3
             // 
             Column3.HeaderText = "Valor";
+            Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
             // 
             // panel2
             // 
             panel2.BackColor = Color.White;
             panel2.Controls.Add(pictureBox2);
-            panel2.Controls.Add(txtBusca);
-            panel2.Location = new Point(342, 114);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Controls.Add(txtBuscaS);
+            panel2.Location = new Point(16, 118);
             panel2.Name = "panel2";
-            panel2.Size = new Size(914, 47);
+            panel2.Size = new Size(1017, 63);
             panel2.TabIndex = 23;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(8, 8);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
+            pictureBox2.Location = new Point(9, 11);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(38, 29);
+            pictureBox2.Size = new Size(43, 39);
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
             // 
-            // txtBusca
+            // txtBuscaS
             // 
-            txtBusca.BackColor = Color.White;
-            txtBusca.Location = new Point(52, 8);
-            txtBusca.Margin = new Padding(3, 2, 3, 2);
-            txtBusca.Multiline = true;
-            txtBusca.Name = "txtBusca";
-            txtBusca.Size = new Size(857, 30);
-            txtBusca.TabIndex = 0;
+            txtBuscaS.BackColor = Color.White;
+            txtBuscaS.Location = new Point(59, 11);
+            txtBuscaS.Multiline = true;
+            txtBuscaS.Name = "txtBuscaS";
+            txtBuscaS.Size = new Size(955, 39);
+            txtBuscaS.TabIndex = 0;
+            txtBuscaS.TextChanged += txtBuscaS_TextChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 10F);
-            label3.Location = new Point(337, 35);
+            label3.Location = new Point(15, 53);
             label3.Name = "label3";
-            label3.Size = new Size(301, 19);
+            label3.Size = new Size(365, 21);
             label3.TabIndex = 22;
             label3.Text = "Gerencie os seus trabalhos e encomendas";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 16F, FontStyle.Bold);
-            label2.Location = new Point(337, 9);
-            label2.Name = "label2";
-            label2.Size = new Size(99, 26);
-            label2.TabIndex = 21;
-            label2.Text = "Serviços";
             // 
             // panel1
             // 
@@ -202,14 +194,13 @@
             panel1.Controls.Add(btnEstoqueS);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(294, 620);
+            panel1.Size = new Size(336, 827);
             panel1.TabIndex = 20;
             // 
             // btnServicosS
             // 
-            btnServicosS.BackColor = Color.White;
+            btnServicosS.BackColor = Color.FromArgb(191, 165, 187);
             btnServicosS.FlatAppearance.BorderSize = 0;
             btnServicosS.FlatAppearance.MouseDownBackColor = Color.FromArgb(191, 165, 187);
             btnServicosS.FlatAppearance.MouseOverBackColor = Color.FromArgb(191, 165, 187);
@@ -217,10 +208,9 @@
             btnServicosS.Font = new Font("Century Gothic", 12F);
             btnServicosS.Image = (Image)resources.GetObject("btnServicosS.Image");
             btnServicosS.ImageAlign = ContentAlignment.MiddleLeft;
-            btnServicosS.Location = new Point(23, 429);
-            btnServicosS.Margin = new Padding(3, 2, 3, 2);
+            btnServicosS.Location = new Point(26, 572);
             btnServicosS.Name = "btnServicosS";
-            btnServicosS.Size = new Size(255, 48);
+            btnServicosS.Size = new Size(291, 64);
             btnServicosS.TabIndex = 6;
             btnServicosS.Text = "Serviços";
             btnServicosS.UseVisualStyleBackColor = false;
@@ -229,19 +219,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 13F, FontStyle.Bold);
-            label1.Location = new Point(41, 124);
+            label1.Location = new Point(47, 165);
             label1.Name = "label1";
-            label1.Size = new Size(207, 22);
+            label1.Size = new Size(253, 26);
             label1.TabIndex = 5;
             label1.Text = "Bem-vinda ao Sistema";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(23, 2);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(26, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(255, 129);
+            pictureBox1.Size = new Size(291, 172);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
@@ -256,14 +245,13 @@
             btnPedidosS.Font = new Font("Century Gothic", 12F);
             btnPedidosS.Image = (Image)resources.GetObject("btnPedidosS.Image");
             btnPedidosS.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPedidosS.Location = new Point(23, 511);
-            btnPedidosS.Margin = new Padding(3, 2, 3, 2);
+            btnPedidosS.Location = new Point(26, 681);
             btnPedidosS.Name = "btnPedidosS";
-            btnPedidosS.Size = new Size(255, 48);
+            btnPedidosS.Size = new Size(291, 64);
             btnPedidosS.TabIndex = 2;
             btnPedidosS.Text = "Pedidos";
             btnPedidosS.UseVisualStyleBackColor = false;
-            btnPedidosS.Click += btnServicos_Click;
+            btnPedidosS.Click += btnPedidosS_Click;
             // 
             // btnClientesS
             // 
@@ -275,14 +263,13 @@
             btnClientesS.Font = new Font("Century Gothic", 12F);
             btnClientesS.Image = (Image)resources.GetObject("btnClientesS.Image");
             btnClientesS.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClientesS.Location = new Point(23, 347);
-            btnClientesS.Margin = new Padding(3, 2, 3, 2);
+            btnClientesS.Location = new Point(26, 463);
             btnClientesS.Name = "btnClientesS";
-            btnClientesS.Size = new Size(255, 48);
+            btnClientesS.Size = new Size(291, 64);
             btnClientesS.TabIndex = 1;
             btnClientesS.Text = "Clientes";
             btnClientesS.UseVisualStyleBackColor = false;
-            btnClientesS.Click += btnClientes_Click;
+            btnClientesS.Click += btnClientesS_Click;
             // 
             // btnEstoqueS
             // 
@@ -295,73 +282,85 @@
             btnEstoqueS.ForeColor = Color.Black;
             btnEstoqueS.Image = (Image)resources.GetObject("btnEstoqueS.Image");
             btnEstoqueS.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEstoqueS.Location = new Point(23, 265);
-            btnEstoqueS.Margin = new Padding(3, 2, 3, 2);
+            btnEstoqueS.Location = new Point(26, 353);
             btnEstoqueS.Name = "btnEstoqueS";
-            btnEstoqueS.Size = new Size(255, 48);
+            btnEstoqueS.Size = new Size(291, 64);
             btnEstoqueS.TabIndex = 0;
             btnEstoqueS.Text = "Estoque";
             btnEstoqueS.UseVisualStyleBackColor = false;
-            btnEstoqueS.Click += btnEstoque_Click;
+            btnEstoqueS.Click += btnEstoqueS_Click;
             // 
             // panelCadastroS
             // 
             panelCadastroS.BackColor = Color.White;
             panelCadastroS.Controls.Add(label8);
             panelCadastroS.Controls.Add(CadastrarNovoCliente);
-            panelCadastroS.Location = new Point(300, 2);
+            panelCadastroS.Location = new Point(342, 3);
+            panelCadastroS.Margin = new Padding(3, 4, 3, 4);
             panelCadastroS.Name = "panelCadastroS";
-            panelCadastroS.Size = new Size(992, 620);
+            panelCadastroS.Size = new Size(1134, 827);
             panelCadastroS.TabIndex = 28;
+            panelCadastroS.Visible = false;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(426, 402);
+            label8.Location = new Point(487, 536);
             label8.Name = "label8";
-            label8.Size = new Size(0, 15);
+            label8.Size = new Size(0, 20);
             label8.TabIndex = 3;
             // 
             // CadastrarNovoCliente
             // 
-            CadastrarNovoCliente.Controls.Add(TipodeServicoS);
+            CadastrarNovoCliente.Controls.Add(cmbTipodeServicoS);
             CadastrarNovoCliente.Controls.Add(label10);
-            CadastrarNovoCliente.Controls.Add(btnVoltar);
+            CadastrarNovoCliente.Controls.Add(btnVoltarS);
             CadastrarNovoCliente.Controls.Add(btnSalvarS);
-            CadastrarNovoCliente.Controls.Add(txtTelefone);
+            CadastrarNovoCliente.Controls.Add(txtValorS);
             CadastrarNovoCliente.Controls.Add(label5);
             CadastrarNovoCliente.Controls.Add(label7);
             CadastrarNovoCliente.Controls.Add(label6);
             CadastrarNovoCliente.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CadastrarNovoCliente.Location = new Point(42, 176);
+            CadastrarNovoCliente.Location = new Point(39, 29);
+            CadastrarNovoCliente.Margin = new Padding(3, 4, 3, 4);
             CadastrarNovoCliente.Name = "CadastrarNovoCliente";
-            CadastrarNovoCliente.Size = new Size(898, 243);
+            CadastrarNovoCliente.Padding = new Padding(3, 4, 3, 4);
+            CadastrarNovoCliente.Size = new Size(1055, 324);
             CadastrarNovoCliente.TabIndex = 0;
             CadastrarNovoCliente.TabStop = false;
+            // 
+            // cmbTipodeServicoS
+            // 
+            cmbTipodeServicoS.FormattingEnabled = true;
+            cmbTipodeServicoS.Items.AddRange(new object[] { "Tecido", "Linha", "Aviamentos" });
+            cmbTipodeServicoS.Location = new Point(26, 188);
+            cmbTipodeServicoS.Name = "cmbTipodeServicoS";
+            cmbTipodeServicoS.Size = new Size(436, 29);
+            cmbTipodeServicoS.TabIndex = 24;
+            cmbTipodeServicoS.SelectedIndexChanged += cmbTipodeServicoS_SelectedIndexChanged;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Century Gothic", 12F);
-            label10.Location = new Point(23, 45);
+            label10.Location = new Point(26, 60);
             label10.Name = "label10";
-            label10.Size = new Size(306, 21);
+            label10.Size = new Size(388, 23);
             label10.TabIndex = 23;
             label10.Text = "Gerencie seus trbalhos e encomendas";
             // 
-            // btnVoltar
+            // btnVoltarS
             // 
-            btnVoltar.BackColor = Color.White;
-            btnVoltar.FlatAppearance.BorderSize = 0;
-            btnVoltar.FlatStyle = FlatStyle.Flat;
-            btnVoltar.Font = new Font("Century Gothic", 10F);
-            btnVoltar.Location = new Point(779, 203);
-            btnVoltar.Margin = new Padding(3, 2, 3, 2);
-            btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(94, 26);
-            btnVoltar.TabIndex = 9;
-            btnVoltar.Text = "Voltar";
-            btnVoltar.UseVisualStyleBackColor = false;
+            btnVoltarS.BackColor = Color.White;
+            btnVoltarS.FlatAppearance.BorderSize = 0;
+            btnVoltarS.FlatStyle = FlatStyle.Flat;
+            btnVoltarS.Font = new Font("Century Gothic", 10F);
+            btnVoltarS.Location = new Point(890, 271);
+            btnVoltarS.Name = "btnVoltarS";
+            btnVoltarS.Size = new Size(107, 35);
+            btnVoltarS.TabIndex = 9;
+            btnVoltarS.Text = "Voltar";
+            btnVoltarS.UseVisualStyleBackColor = false;
             // 
             // btnSalvarS
             // 
@@ -369,28 +368,29 @@
             btnSalvarS.FlatAppearance.BorderSize = 0;
             btnSalvarS.FlatStyle = FlatStyle.Flat;
             btnSalvarS.Font = new Font("Century Gothic", 10F);
-            btnSalvarS.Location = new Point(657, 203);
-            btnSalvarS.Margin = new Padding(3, 2, 3, 2);
+            btnSalvarS.Location = new Point(751, 271);
             btnSalvarS.Name = "btnSalvarS";
-            btnSalvarS.Size = new Size(94, 26);
+            btnSalvarS.Size = new Size(107, 35);
             btnSalvarS.TabIndex = 8;
             btnSalvarS.Text = "Salvar";
             btnSalvarS.UseVisualStyleBackColor = false;
+            btnSalvarS.Click += btnSalvarS_Click;
             // 
-            // txtTelefone
+            // txtValorS
             // 
-            txtTelefone.Location = new Point(491, 141);
-            txtTelefone.Name = "txtTelefone";
-            txtTelefone.Size = new Size(382, 25);
-            txtTelefone.TabIndex = 5;
+            txtValorS.Location = new Point(561, 188);
+            txtValorS.Margin = new Padding(3, 4, 3, 4);
+            txtValorS.Name = "txtValorS";
+            txtValorS.Size = new Size(436, 29);
+            txtValorS.TabIndex = 5;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 9.75F);
-            label5.Location = new Point(491, 121);
+            label5.Location = new Point(561, 161);
             label5.Name = "label5";
-            label5.Size = new Size(42, 17);
+            label5.Size = new Size(54, 21);
             label5.TabIndex = 1;
             label5.Text = "Valor";
             // 
@@ -398,9 +398,9 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Century Gothic", 15F, FontStyle.Bold);
-            label7.Location = new Point(23, 20);
+            label7.Location = new Point(26, 27);
             label7.Name = "label7";
-            label7.Size = new Size(270, 23);
+            label7.Size = new Size(336, 29);
             label7.TabIndex = 2;
             label7.Text = "Cadastre seu novo serviço";
             // 
@@ -408,35 +408,75 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 9.75F);
-            label6.Location = new Point(20, 121);
+            label6.Location = new Point(23, 161);
             label6.Name = "label6";
-            label6.Size = new Size(104, 17);
+            label6.Size = new Size(136, 21);
             label6.TabIndex = 1;
             label6.Text = "Tipo de serviço";
             // 
-            // TipodeServicoS
+            // btnEditarS
             // 
-            TipodeServicoS.FormattingEnabled = true;
-            TipodeServicoS.Items.AddRange(new object[] { "Tecido", "Linha", "Aviamentos" });
-            TipodeServicoS.Location = new Point(23, 141);
-            TipodeServicoS.Margin = new Padding(3, 2, 3, 2);
-            TipodeServicoS.Name = "TipodeServicoS";
-            TipodeServicoS.Size = new Size(382, 25);
-            TipodeServicoS.TabIndex = 24;
+            btnEditarS.BackColor = Color.White;
+            btnEditarS.FlatAppearance.BorderSize = 0;
+            btnEditarS.FlatStyle = FlatStyle.Flat;
+            btnEditarS.Font = new Font("Century Gothic", 10F);
+            btnEditarS.Location = new Point(782, 225);
+            btnEditarS.Name = "btnEditarS";
+            btnEditarS.Size = new Size(107, 35);
+            btnEditarS.TabIndex = 34;
+            btnEditarS.Text = "Editar";
+            btnEditarS.UseVisualStyleBackColor = false;
+            btnEditarS.Click += btnEditarS_Click;
+            // 
+            // btnExcluirS
+            // 
+            btnExcluirS.BackColor = Color.FromArgb(191, 165, 187);
+            btnExcluirS.FlatAppearance.BorderSize = 0;
+            btnExcluirS.FlatStyle = FlatStyle.Flat;
+            btnExcluirS.Font = new Font("Century Gothic", 10F);
+            btnExcluirS.Location = new Point(926, 225);
+            btnExcluirS.Name = "btnExcluirS";
+            btnExcluirS.Size = new Size(107, 35);
+            btnExcluirS.TabIndex = 33;
+            btnExcluirS.Text = "Excluir ";
+            btnExcluirS.UseVisualStyleBackColor = false;
+            btnExcluirS.Click += btnExcluirS_Click;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(label3);
+            groupBox2.Controls.Add(btnAbrirCadastroS);
+            groupBox2.Controls.Add(panel2);
+            groupBox2.Controls.Add(label2);
+            groupBox2.Controls.Add(btnExcluirS);
+            groupBox2.Controls.Add(btnEditarS);
+            groupBox2.Location = new Point(375, 31);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(1055, 303);
+            groupBox2.TabIndex = 35;
+            groupBox2.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 16F, FontStyle.Bold);
+            label2.Location = new Point(15, 21);
+            label2.Name = "label2";
+            label2.Size = new Size(121, 32);
+            label2.TabIndex = 21;
+            label2.Text = "Serviços";
             // 
             // TelaServicos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1291, 620);
+            ClientSize = new Size(1475, 827);
             Controls.Add(panelCadastroS);
-            Controls.Add(btnAbrirCadastro);
             Controls.Add(dgvServicos);
-            Controls.Add(panel2);
-            Controls.Add(label3);
-            Controls.Add(label2);
             Controls.Add(panel1);
+            Controls.Add(groupBox2);
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaServicos";
@@ -454,19 +494,19 @@
             panelCadastroS.PerformLayout();
             CadastrarNovoCliente.ResumeLayout(false);
             CadastrarNovoCliente.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Button btnAbrirCadastro;
+        private Button btnAbrirCadastroS;
         private DataGridView dgvServicos;
         private Panel panel2;
         private PictureBox pictureBox2;
-        private TextBox txtBusca;
+        private TextBox txtBuscaS;
         private Label label3;
-        private Label label2;
         private Panel panel1;
         private Label label1;
         private PictureBox pictureBox1;
@@ -475,15 +515,13 @@
         private Button btnEstoque;
         private Panel panelCadastroCliente;
         private Label label10;
-        private Label label9;
         private Label label8;
         private GroupBox CadastrarNovoCliente;
         private Button btnCancelarCliente;
         private Button btnSalvarClientes;
-        private TextBox txtTelefone;
+        private TextBox txtValorS;
         private TextBox txtNomeCliente;
         private Label label5;
-        private Label label4;
         private Label label7;
         private Label label6;
         private Label label11;
@@ -501,11 +539,15 @@
         private Button btnPedidosS;
         private Button btnClientesS;
         private Button btnEstoqueS;
-        private Button btnVoltar;
+        private Button btnVoltarS;
         private Button btnSalvarS;
         private Panel panelCadastroS;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
-        private ComboBox TipodeServicoS;
+        private ComboBox cmbTipodeServicoS;
+        private Button btnEditarS;
+        private Button btnExcluirS;
+        private GroupBox groupBox2;
+        private Label label2;
     }
 }

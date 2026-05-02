@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -8,6 +10,8 @@ namespace LogiN
     {
         int idSelecionado = 0;
         bool modoEdicao = false;
+
+        string conexaoString = "server=localhost;database=Projeto;uid=root;pwd=;";
 
         public TelaClientes()
         {
@@ -21,59 +25,59 @@ namespace LogiN
             panelCadastroCliente.Visible = false;
             dgvClientes.Visible = true;
 
-            ConfigurarGrid();
             CarregarClientes();
-        }
-
-        // ================= GRID =================
-        private void ConfigurarGrid()
-        {
-            dgvClientes.Columns.Clear();
-
-            dgvClientes.Columns.Add("Id", "Id");
-            dgvClientes.Columns["Id"].Visible = false;
-
-            dgvClientes.Columns.Add("Nome", "Nome");
-            dgvClientes.Columns.Add("CPF", "CPF");
-            dgvClientes.Columns.Add("Telefone", "Telefone");
-
-            dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClientes.AllowUserToAddRows = false;
         }
 
         // ================= CARREGAR =================
         private void CarregarClientes()
         {
-            dgvClientes.Rows.Clear();
-
-            try
+            using (MySqlConnection conn = new MySqlConnection(conexaoString))
             {
-                ConexaoC conexao = new ConexaoC();
-
-                using (MySqlConnection conn = conexao.Conectar())
+                try
                 {
                     conn.Open();
 
-                    string sql = "SELECT * FROM Clientes";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    MySqlDataReader reader = cmd.ExecuteReader();
+                    string sql = "SELECT Id, Nome, CPF, Telefone FROM Clientes";
+                    MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                    while (reader.Read())
-                    {
-                        dgvClientes.Rows.Add(
-                            reader["Id"],
-                            reader["Nome"],
-                            reader["CPF"],
-                            reader["Telefone"]
-                        );
-                    }
+                    dgvClientes.DataSource = dt;
+
+                    EstilizarGrid();
+
+                    dgvClientes.ClearSelection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao carregar:\n" + ex.ToString());
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro REAL ao carregar:\n" + ex.ToString());
-            }
+        }
+
+        // ================= ESTILO =================
+        private void EstilizarGrid()
+        {
+            dgvClientes.EnableHeadersVisualStyles = false;
+
+            dgvClientes.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            dgvClientes.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+
+            dgvClientes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(191, 165, 187);
+            dgvClientes.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dgvClientes.BorderStyle = BorderStyle.None;
+            dgvClientes.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvClientes.GridColor = Color.White;
+
+            dgvClientes.RowHeadersVisible = false;
+            dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvClientes.MultiSelect = false;
+            dgvClientes.AllowUserToAddRows = false;
+            dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            if (dgvClientes.Columns["Id"] != null)
+                dgvClientes.Columns["Id"].Visible = false;
         }
 
         // ================= NOVO =================
@@ -93,17 +97,15 @@ namespace LogiN
         // ================= EDITAR =================
         private void btnEditarC_Click(object sender, EventArgs e)
         {
-            if (dgvClientes.SelectedRows.Count > 0)
+            if (dgvClientes.CurrentRow != null)
             {
                 modoEdicao = true;
 
-                idSelecionado = Convert.ToInt32(
-                    dgvClientes.SelectedRows[0].Cells["Id"].Value
-                );
+                idSelecionado = Convert.ToInt32(dgvClientes.CurrentRow.Cells["Id"].Value);
 
-                txtNomeC.Text = dgvClientes.SelectedRows[0].Cells["Nome"].Value.ToString();
-                txtCPF.Text = dgvClientes.SelectedRows[0].Cells["CPF"].Value.ToString();
-                txtTelefoneC.Text = dgvClientes.SelectedRows[0].Cells["Telefone"].Value.ToString();
+                txtNomeC.Text = dgvClientes.CurrentRow.Cells["Nome"].Value.ToString();
+                txtCPF.Text = dgvClientes.CurrentRow.Cells["CPF"].Value.ToString();
+                txtTelefoneC.Text = dgvClientes.CurrentRow.Cells["Telefone"].Value.ToString();
 
                 dgvClientes.Visible = false;
                 panelCadastroCliente.Visible = true;
@@ -126,11 +128,9 @@ namespace LogiN
                 !string.IsNullOrWhiteSpace(cpf) &&
                 !string.IsNullOrWhiteSpace(telefone))
             {
-                try
+                using (MySqlConnection conn = new MySqlConnection(conexaoString))
                 {
-                    ConexaoC conexao = new ConexaoC();
-
-                    using (MySqlConnection conn = conexao.Conectar())
+                    try
                     {
                         conn.Open();
 
@@ -157,17 +157,16 @@ namespace LogiN
 
                             cmd.ExecuteNonQuery();
                         }
+
+                        panelCadastroCliente.Visible = false;
+                        dgvClientes.Visible = true;
+
+                        CarregarClientes();
                     }
-
-                    panelCadastroCliente.Visible = false;
-                    dgvClientes.Visible = true;
-                    dgvClientes.BringToFront();
-
-                    CarregarClientes();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro REAL ao salvar:\n" + ex.ToString());
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao salvar:\n" + ex.ToString());
+                    }
                 }
             }
             else
@@ -179,17 +178,13 @@ namespace LogiN
         // ================= EXCLUIR =================
         private void btnExcluirC_Click(object sender, EventArgs e)
         {
-            if (dgvClientes.SelectedRows.Count > 0)
+            if (dgvClientes.CurrentRow != null)
             {
-                try
+                int id = Convert.ToInt32(dgvClientes.CurrentRow.Cells["Id"].Value);
+
+                using (MySqlConnection conn = new MySqlConnection(conexaoString))
                 {
-                    int id = Convert.ToInt32(
-                        dgvClientes.SelectedRows[0].Cells["Id"].Value
-                    );
-
-                    ConexaoC conexao = new ConexaoC();
-
-                    using (MySqlConnection conn = conexao.Conectar())
+                    try
                     {
                         conn.Open();
 
@@ -198,13 +193,13 @@ namespace LogiN
                         cmd.Parameters.AddWithValue("@id", id);
 
                         cmd.ExecuteNonQuery();
-                    }
 
-                    CarregarClientes();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro REAL ao excluir:\n" + ex.ToString());
+                        CarregarClientes();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao excluir:\n" + ex.ToString());
+                    }
                 }
             }
             else
@@ -218,7 +213,6 @@ namespace LogiN
         {
             panelCadastroCliente.Visible = false;
             dgvClientes.Visible = true;
-            dgvClientes.BringToFront();
         }
 
         // ================= BUSCA =================
@@ -226,19 +220,21 @@ namespace LogiN
         {
             string termo = txtBuscaC.Text.ToLower();
 
-            foreach (DataGridViewRow linha in dgvClientes.Rows)
+            CurrencyManager cm = (CurrencyManager)BindingContext[dgvClientes.DataSource];
+            cm.SuspendBinding();
+
+            foreach (DataGridViewRow row in dgvClientes.Rows)
             {
-                if (linha.IsNewRow) continue;
+                if (row.IsNewRow) continue;
 
-                string nome = linha.Cells["Nome"].Value?.ToString().ToLower() ?? "";
-                string cpf = linha.Cells["CPF"].Value?.ToString().ToLower() ?? "";
-                string telefone = linha.Cells["Telefone"].Value?.ToString().ToLower() ?? "";
+                string nome = row.Cells["Nome"].Value.ToString().ToLower();
+                string cpf = row.Cells["CPF"].Value.ToString().ToLower();
+                string tel = row.Cells["Telefone"].Value.ToString().ToLower();
 
-                linha.Visible =
-                    nome.Contains(termo) ||
-                    cpf.Contains(termo) ||
-                    telefone.Contains(termo);
+                row.Visible = nome.Contains(termo) || cpf.Contains(termo) || tel.Contains(termo);
             }
+
+            cm.ResumeBinding();
         }
 
         // ================= NAVEGAÇÃO =================

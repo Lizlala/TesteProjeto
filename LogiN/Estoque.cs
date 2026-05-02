@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -8,6 +10,8 @@ namespace LogiN
     {
         int idSelecionado = 0;
         bool modoEdicao = false;
+
+        string conexao = "server=localhost;database=Projeto;uid=root;pwd=;";
 
         public TelaEstoque()
         {
@@ -21,59 +25,63 @@ namespace LogiN
             panelCadastroE.Visible = false;
             dgvEstoque.Visible = true;
 
-            ConfigurarGrid();
             CarregarEstoque();
-        }
-
-        // ================= GRID =================
-        private void ConfigurarGrid()
-        {
-            dgvEstoque.Columns.Clear();
-
-            dgvEstoque.Columns.Add("Id", "Id");
-            dgvEstoque.Columns["Id"].Visible = false;
-
-            dgvEstoque.Columns.Add("Nome", "Nome");
-            dgvEstoque.Columns.Add("Quantidade", "Quantidade");
-            dgvEstoque.Columns.Add("Categoria", "Categoria");
-
-            dgvEstoque.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvEstoque.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvEstoque.AllowUserToAddRows = false;
         }
 
         // ================= CARREGAR =================
         private void CarregarEstoque()
         {
-            dgvEstoque.Rows.Clear();
-
             try
             {
-                ConexaoE conexao = new ConexaoE();
-
-                using (MySqlConnection conn = conexao.Conectar())
+                using (MySqlConnection conn = new MySqlConnection(conexao))
                 {
                     conn.Open();
 
                     string sql = "SELECT * FROM Estoque";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    MySqlDataReader reader = cmd.ExecuteReader();
+                    MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                    while (reader.Read())
-                    {
-                        dgvEstoque.Rows.Add(
-                            reader["Id"],
-                            reader["Nome"],
-                            reader["Quantidade"],
-                            reader["Categoria"]
-                        );
-                    }
+                    dgvEstoque.DataSource = dt;
+
+                    EstiloGrid();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro REAL ao carregar:\n" + ex.ToString());
+                MessageBox.Show("Erro ao carregar:\n" + ex.ToString());
             }
+        }
+
+        // ================= ESTILO =================
+        private void EstiloGrid()
+        {
+            dgvEstoque.EnableHeadersVisualStyles = false;
+
+            dgvEstoque.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            dgvEstoque.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+
+            dgvEstoque.DefaultCellStyle.SelectionBackColor = Color.FromArgb(191, 165, 187);
+            dgvEstoque.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dgvEstoque.RowHeadersVisible = false;
+            dgvEstoque.BorderStyle = BorderStyle.None;
+            dgvEstoque.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dgvEstoque.GridColor = Color.White;
+
+            dgvEstoque.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvEstoque.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvEstoque.MultiSelect = false;
+            dgvEstoque.ReadOnly = true;
+            dgvEstoque.AllowUserToAddRows = false;
+
+            dgvEstoque.Columns["Id"].Visible = false;
+
+            dgvEstoque.Columns["Nome"].HeaderText = "Nome";
+            dgvEstoque.Columns["Quantidade"].HeaderText = "Quantidade";
+            dgvEstoque.Columns["Categoria"].HeaderText = "Categoria";
+
+            dgvEstoque.ClearSelection();
         }
 
         // ================= NOVO =================
@@ -85,29 +93,25 @@ namespace LogiN
             QuantidadeE.Value = 0;
             cmbCategoriaE.SelectedIndex = -1;
 
-            dgvEstoque.Visible = false;
             panelCadastroE.Visible = true;
-            panelCadastroE.BringToFront(); // 🔥 importante
+            panelCadastroE.BringToFront();
         }
 
         // ================= EDITAR =================
         private void btnEditarE_Click(object sender, EventArgs e)
         {
-            if (dgvEstoque.SelectedRows.Count > 0)
+            if (dgvEstoque.CurrentRow != null)
             {
                 modoEdicao = true;
 
-                idSelecionado = Convert.ToInt32(
-                    dgvEstoque.SelectedRows[0].Cells["Id"].Value
-                );
+                idSelecionado = Convert.ToInt32(dgvEstoque.CurrentRow.Cells["Id"].Value);
 
-                txtNomeItemE.Text = dgvEstoque.SelectedRows[0].Cells["Nome"].Value.ToString();
-                QuantidadeE.Value = Convert.ToInt32(dgvEstoque.SelectedRows[0].Cells["Quantidade"].Value);
-                cmbCategoriaE.Text = dgvEstoque.SelectedRows[0].Cells["Categoria"].Value.ToString();
+                txtNomeItemE.Text = dgvEstoque.CurrentRow.Cells["Nome"].Value.ToString();
+                QuantidadeE.Value = Convert.ToInt32(dgvEstoque.CurrentRow.Cells["Quantidade"].Value);
+                cmbCategoriaE.Text = dgvEstoque.CurrentRow.Cells["Categoria"].Value.ToString();
 
-                dgvEstoque.Visible = false;
                 panelCadastroE.Visible = true;
-                panelCadastroE.BringToFront(); // 🔥 importante
+                panelCadastroE.BringToFront();
             }
             else
             {
@@ -122,89 +126,64 @@ namespace LogiN
             int quantidade = (int)QuantidadeE.Value;
             string categoria = cmbCategoriaE.Text;
 
-            if (!string.IsNullOrWhiteSpace(nome) &&
-                !string.IsNullOrWhiteSpace(categoria))
+            if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(categoria))
             {
-                try
+                MessageBox.Show("Preencha tudo!");
+                return;
+            }
+
+            using (MySqlConnection conn = new MySqlConnection(conexao))
+            {
+                conn.Open();
+
+                if (!modoEdicao)
                 {
-                    ConexaoE conexao = new ConexaoE();
+                    string sql = "INSERT INTO Estoque (Nome, Quantidade, Categoria) VALUES (@n,@q,@c)";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    using (MySqlConnection conn = conexao.Conectar())
-                    {
-                        conn.Open();
+                    cmd.Parameters.AddWithValue("@n", nome);
+                    cmd.Parameters.AddWithValue("@q", quantidade);
+                    cmd.Parameters.AddWithValue("@c", categoria);
 
-                        if (!modoEdicao)
-                        {
-                            string sql = "INSERT INTO Estoque (Nome, Quantidade, Categoria) VALUES (@nome, @qtd, @cat)";
-                            MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                            cmd.Parameters.AddWithValue("@nome", nome);
-                            cmd.Parameters.AddWithValue("@qtd", quantidade);
-                            cmd.Parameters.AddWithValue("@cat", categoria);
-
-                            cmd.ExecuteNonQuery();
-                        }
-                        else
-                        {
-                            string sql = "UPDATE Estoque SET Nome=@nome, Quantidade=@qtd, Categoria=@cat WHERE Id=@id";
-                            MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                            cmd.Parameters.AddWithValue("@nome", nome);
-                            cmd.Parameters.AddWithValue("@qtd", quantidade);
-                            cmd.Parameters.AddWithValue("@cat", categoria);
-                            cmd.Parameters.AddWithValue("@id", idSelecionado);
-
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    panelCadastroE.Visible = false;
-                    dgvEstoque.Visible = true;
-                    dgvEstoque.BringToFront();
-
-                    CarregarEstoque();
+                    cmd.ExecuteNonQuery();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Erro REAL ao salvar:\n" + ex.ToString());
+                    string sql = "UPDATE Estoque SET Nome=@n, Quantidade=@q, Categoria=@c WHERE Id=@id";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@n", nome);
+                    cmd.Parameters.AddWithValue("@q", quantidade);
+                    cmd.Parameters.AddWithValue("@c", categoria);
+                    cmd.Parameters.AddWithValue("@id", idSelecionado);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
-            else
-            {
-                MessageBox.Show("Preencha todos os campos!");
-            }
+
+            panelCadastroE.Visible = false;
+            CarregarEstoque();
         }
 
         // ================= EXCLUIR =================
         private void btnExcluirE_Click(object sender, EventArgs e)
         {
-            if (dgvEstoque.SelectedRows.Count > 0)
+            if (dgvEstoque.CurrentRow != null)
             {
-                try
+                int id = Convert.ToInt32(dgvEstoque.CurrentRow.Cells["Id"].Value);
+
+                using (MySqlConnection conn = new MySqlConnection(conexao))
                 {
-                    int id = Convert.ToInt32(
-                        dgvEstoque.SelectedRows[0].Cells["Id"].Value
-                    );
+                    conn.Open();
 
-                    ConexaoE conexao = new ConexaoE();
+                    string sql = "DELETE FROM Estoque WHERE Id=@id";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@id", id);
 
-                    using (MySqlConnection conn = conexao.Conectar())
-                    {
-                        conn.Open();
-
-                        string sql = "DELETE FROM Estoque WHERE Id=@id";
-                        MySqlCommand cmd = new MySqlCommand(sql, conn);
-                        cmd.Parameters.AddWithValue("@id", id);
-
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    CarregarEstoque();
+                    cmd.ExecuteNonQuery();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro REAL ao excluir:\n" + ex.ToString());
-                }
+
+                CarregarEstoque();
             }
             else
             {
@@ -216,26 +195,13 @@ namespace LogiN
         private void btnVoltarE_Click(object sender, EventArgs e)
         {
             panelCadastroE.Visible = false;
-            dgvEstoque.Visible = true;
-            dgvEstoque.BringToFront(); // 🔥 importante
         }
 
         // ================= BUSCA =================
         private void txtBuscaE_TextChanged(object sender, EventArgs e)
         {
-            string termo = txtBuscaE.Text.ToLower();
-
-            foreach (DataGridViewRow linha in dgvEstoque.Rows)
-            {
-                if (linha.IsNewRow) continue;
-
-                string nome = linha.Cells["Nome"].Value?.ToString().ToLower() ?? "";
-                string categoria = linha.Cells["Categoria"].Value?.ToString().ToLower() ?? "";
-
-                linha.Visible =
-                    nome.Contains(termo) ||
-                    categoria.Contains(termo);
-            }
+            (dgvEstoque.DataSource as DataTable).DefaultView.RowFilter =
+                $"Nome LIKE '%{txtBuscaE.Text}%' OR Categoria LIKE '%{txtBuscaE.Text}%'";
         }
 
         // ================= NAVEGAÇÃO =================
