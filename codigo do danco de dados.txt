@@ -1,56 +1,74 @@
-CREATE DATABASE fiodouros;
-USE fiodouros;
+DROP DATABASE IF EXISTS Projeto;
+CREATE DATABASE Projeto;
 
-CREATE TABLE estoque (
-    id_estoque INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    quantidade INT NOT NULL,
-    tipo VARCHAR(50)
+USE Projeto;
+
+CREATE TABLE Clientes (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100),
+    CPF VARCHAR(20),
+    Telefone VARCHAR(20)
+);
+
+INSERT INTO Clientes (Nome, CPF, Telefone) VALUES
+('Ana Silva', '12345678900', '11999999999'),
+('Maria Oliveira', '98765432100', '11988888888'),
+('João Souza', '45612378900', '11977777777'),
+('Carlos Lima', '78945612300', '11966666666'),
+('Fernanda Costa', '32165498700', '11955555555'),
+('Bruno Alves', '65498732100', '11944444444'),
+('Juliana Rocha', '15975348600', '11933333333');
+
+CREATE TABLE Estoque (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Quantidade INT,
+    Categoria VARCHAR(50)
+);
+
+INSERT INTO Estoque (Nome, Quantidade, Categoria) VALUES
+('Tecido Jeans', 50, 'Tecido'),
+('Linha Branca', 100, 'Linha'),
+('Zíper Preto', 30, 'Aviamento'),
+('Botão Metal', 200, 'Aviamento'),
+('Tecido Algodão', 40, 'Tecido'),
+('Linha Preta', 80, 'Linha'),
+('Elástico', 60, 'Aviamento');
+
+CREATE TABLE Servicos (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Tipo VARCHAR(100),
+    Valor DECIMAL(10,2)
+);
+
+INSERT INTO Servicos (Tipo, Valor) VALUES
+('Barra de calça', 15.00),
+('Ajuste de roupa', 25.00),
+('Troca de zíper', 30.00),
+('Customização', 50.00),
+('Reforma simples', 20.00),
+('Ajuste de vestido', 40.00),
+('Conserto geral', 35.00);
+
+CREATE TABLE Pedidos (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    ClienteId INT,
+    ServicoId INT,
+    Valor DECIMAL(10,2),
+    Status VARCHAR(50),
+
+    FOREIGN KEY (ClienteId) REFERENCES Clientes(Id),
+    FOREIGN KEY (ServicoId) REFERENCES Servicos(Id)
 );
 
 
-CREATE TABLE movimentacoes (
-    id_movimentacao INT PRIMARY KEY AUTO_INCREMENT,
-    data_movimentacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    id_produto INT NOT NULL,
-    tipo ENUM('entrada', 'saida') NOT NULL,
-    quantidade INT NOT NULL,
-    CONSTRAINT fk_movimentacoes_estoque
-        FOREIGN KEY (id_produto)
-        REFERENCES estoque(id_estoque)
-);
-
-CREATE TABLE clientes (
-    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    telefone VARCHAR(20),
-    email VARCHAR(100),
-    endereco VARCHAR(150)
-);
-
-CREATE TABLE cadastro_servicos (
-    id_servico INT AUTO_INCREMENT PRIMARY KEY,
-    nome_servico VARCHAR(100) NOT NULL,
-    descricao VARCHAR(200),
-    valor DECIMAL(10,2) NOT NULL,
-    status VARCHAR(20)
-);
-
-CREATE TABLE pedidos_servicos (
-    id_pedido_servico INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT NOT NULL,
-    id_servico INT NOT NULL,
-    quantidade_pedido INT NOT NULL,
-    data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT fk_pedido_cliente
-        FOREIGN KEY (id_cliente)
-        REFERENCES clientes(id_cliente),
-
-    CONSTRAINT fk_pedido_servico
-        FOREIGN KEY (id_servico)
-        REFERENCES cadastro_servicos(id_servico)
-);
-
+INSERT INTO Pedidos (ClienteId, ServicoId, Valor, Status) VALUES
+(1, 1, 15.00, 'Pendente'),
+(2, 2, 25.00, 'Em andamento'),
+(3, 3, 30.00, 'Finalizado'),
+(4, 4, 50.00, 'Pendente'),
+(5, 5, 10.00, 'Finalizado'),
+(6, 6, 40.00, 'Em andamento'),
+(7, 7, 20.00, 'Pendente');
 
 

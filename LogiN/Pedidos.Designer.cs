@@ -49,23 +49,20 @@
             pictureBox3 = new PictureBox();
             txtBuscaP = new TextBox();
             dgvPedidos = new DataGridView();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            Column7 = new DataGridViewTextBoxColumn();
-            Column8 = new DataGridViewTextBoxColumn();
             label8 = new Label();
-            CadastrarNovoCliente = new GroupBox();
-            txtValorP = new TextBox();
-            ClienteP = new ComboBox();
-            TipodeServicoP = new ComboBox();
-            StatusP = new ComboBox();
-            label11 = new Label();
-            btnVoltarP = new Button();
-            btnSalvarP = new Button();
-            label5 = new Label();
-            label4 = new Label();
-            label7 = new Label();
             label6 = new Label();
+            label7 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            btnSalvarP = new Button();
+            label11 = new Label();
+            cmbStatusP = new ComboBox();
+            cmbTipodeServicoP = new ComboBox();
+            cmbClienteP = new ComboBox();
+            txtValorP = new TextBox();
+            CadastrarNovoCliente = new GroupBox();
+            btnExcluirP = new Button();
+            btnEditarP = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -195,7 +192,6 @@
             btnServicosP.TabIndex = 6;
             btnServicosP.Text = "Serviços";
             btnServicosP.UseVisualStyleBackColor = false;
-            btnServicosP.Click += button2_Click;
             // 
             // label2
             // 
@@ -221,7 +217,7 @@
             // 
             // btnPedidosP
             // 
-            btnPedidosP.BackColor = Color.FromArgb(255, 191, 195);
+            btnPedidosP.BackColor = Color.FromArgb(191, 165, 187);
             btnPedidosP.FlatAppearance.BorderSize = 0;
             btnPedidosP.FlatAppearance.MouseDownBackColor = Color.FromArgb(191, 165, 187);
             btnPedidosP.FlatAppearance.MouseOverBackColor = Color.FromArgb(191, 165, 187);
@@ -252,7 +248,6 @@
             btnClientesP.TabIndex = 1;
             btnClientesP.Text = "Clientes";
             btnClientesP.UseVisualStyleBackColor = false;
-            btnClientesP.Click += button4_Click;
             // 
             // btnEstoqueP
             // 
@@ -271,7 +266,6 @@
             btnEstoqueP.TabIndex = 0;
             btnEstoqueP.Text = "Estoque";
             btnEstoqueP.UseVisualStyleBackColor = false;
-            btnEstoqueP.Click += button5_Click;
             // 
             // panel3
             // 
@@ -300,6 +294,7 @@
             txtBuscaP.Name = "txtBuscaP";
             txtBuscaP.Size = new Size(957, 39);
             txtBuscaP.TabIndex = 0;
+            txtBuscaP.TextChanged += txtBuscaP_TextChanged;
             // 
             // dgvPedidos
             // 
@@ -325,7 +320,6 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvPedidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvPedidos.ColumnHeadersHeight = 50;
-            dgvPedidos.Columns.AddRange(new DataGridViewColumn[] { Column5, Column6, Column7, Column8 });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Window;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -335,38 +329,14 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvPedidos.DefaultCellStyle = dataGridViewCellStyle3;
             dgvPedidos.EnableHeadersVisualStyles = false;
-            dgvPedidos.Location = new Point(393, 527);
+            dgvPedidos.Location = new Point(452, 597);
             dgvPedidos.Name = "dgvPedidos";
             dgvPedidos.RowHeadersVisible = false;
             dgvPedidos.RowHeadersWidth = 45;
             dgvPedidos.RowTemplate.Height = 40;
             dgvPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvPedidos.Size = new Size(1026, 575);
+            dgvPedidos.Size = new Size(929, 575);
             dgvPedidos.TabIndex = 31;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Cliente";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            Column6.HeaderText = "Tipo de serviço";
-            Column6.MinimumWidth = 6;
-            Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            Column7.HeaderText = "Valor";
-            Column7.MinimumWidth = 6;
-            Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            Column8.HeaderText = "Status";
-            Column8.MinimumWidth = 6;
-            Column8.Name = "Column8";
             // 
             // label8
             // 
@@ -376,14 +346,112 @@
             label8.Size = new Size(0, 20);
             label8.TabIndex = 28;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Century Gothic", 9.75F);
+            label6.Location = new Point(558, 77);
+            label6.Name = "label6";
+            label6.Size = new Size(136, 21);
+            label6.TabIndex = 1;
+            label6.Text = "Tipo de serviço";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(23, 28);
+            label7.Name = "label7";
+            label7.Size = new Size(215, 23);
+            label7.TabIndex = 2;
+            label7.Text = "Cadastre seu pedido";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Century Gothic", 9.75F);
+            label4.Location = new Point(23, 77);
+            label4.Name = "label4";
+            label4.Size = new Size(69, 21);
+            label4.TabIndex = 0;
+            label4.Text = "Cliente";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Century Gothic", 9.75F);
+            label5.Location = new Point(23, 171);
+            label5.Name = "label5";
+            label5.Size = new Size(54, 21);
+            label5.TabIndex = 1;
+            label5.Text = "Valor";
+            // 
+            // btnSalvarP
+            // 
+            btnSalvarP.BackColor = Color.FromArgb(191, 165, 187);
+            btnSalvarP.FlatAppearance.BorderSize = 0;
+            btnSalvarP.FlatStyle = FlatStyle.Flat;
+            btnSalvarP.Font = new Font("Century Gothic", 10F);
+            btnSalvarP.Location = new Point(887, 260);
+            btnSalvarP.Name = "btnSalvarP";
+            btnSalvarP.Size = new Size(107, 35);
+            btnSalvarP.TabIndex = 8;
+            btnSalvarP.Text = "Salvar";
+            btnSalvarP.UseVisualStyleBackColor = false;
+            btnSalvarP.Click += btnSalvarP_Click;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(558, 169);
+            label11.Name = "label11";
+            label11.Size = new Size(56, 23);
+            label11.TabIndex = 11;
+            label11.Text = "Status";
+            // 
+            // cmbStatusP
+            // 
+            cmbStatusP.FormattingEnabled = true;
+            cmbStatusP.Items.AddRange(new object[] { "Tecido", "Linha", "Aviamentos" });
+            cmbStatusP.Location = new Point(558, 197);
+            cmbStatusP.Name = "cmbStatusP";
+            cmbStatusP.Size = new Size(436, 29);
+            cmbStatusP.TabIndex = 12;
+            // 
+            // cmbTipodeServicoP
+            // 
+            cmbTipodeServicoP.FormattingEnabled = true;
+            cmbTipodeServicoP.Items.AddRange(new object[] { "Tecido", "Linha", "Aviamentos" });
+            cmbTipodeServicoP.Location = new Point(558, 104);
+            cmbTipodeServicoP.Name = "cmbTipodeServicoP";
+            cmbTipodeServicoP.Size = new Size(436, 29);
+            cmbTipodeServicoP.TabIndex = 13;
+            cmbTipodeServicoP.SelectedIndexChanged += cmbTipodeServicoP_SelectedIndexChanged;
+            // 
+            // cmbClienteP
+            // 
+            cmbClienteP.FormattingEnabled = true;
+            cmbClienteP.Items.AddRange(new object[] { "Tecido", "Linha", "Aviamentos" });
+            cmbClienteP.Location = new Point(23, 103);
+            cmbClienteP.Name = "cmbClienteP";
+            cmbClienteP.Size = new Size(436, 29);
+            cmbClienteP.TabIndex = 14;
+            // 
+            // txtValorP
+            // 
+            txtValorP.Location = new Point(23, 197);
+            txtValorP.Margin = new Padding(3, 4, 3, 4);
+            txtValorP.Name = "txtValorP";
+            txtValorP.Size = new Size(436, 29);
+            txtValorP.TabIndex = 15;
+            // 
             // CadastrarNovoCliente
             // 
             CadastrarNovoCliente.Controls.Add(txtValorP);
-            CadastrarNovoCliente.Controls.Add(ClienteP);
-            CadastrarNovoCliente.Controls.Add(TipodeServicoP);
-            CadastrarNovoCliente.Controls.Add(StatusP);
+            CadastrarNovoCliente.Controls.Add(cmbClienteP);
+            CadastrarNovoCliente.Controls.Add(cmbTipodeServicoP);
+            CadastrarNovoCliente.Controls.Add(cmbStatusP);
             CadastrarNovoCliente.Controls.Add(label11);
-            CadastrarNovoCliente.Controls.Add(btnVoltarP);
             CadastrarNovoCliente.Controls.Add(btnSalvarP);
             CadastrarNovoCliente.Controls.Add(label5);
             CadastrarNovoCliente.Controls.Add(label4);
@@ -398,115 +466,32 @@
             CadastrarNovoCliente.TabIndex = 27;
             CadastrarNovoCliente.TabStop = false;
             // 
-            // txtValorP
+            // btnExcluirP
             // 
-            txtValorP.Location = new Point(23, 197);
-            txtValorP.Margin = new Padding(3, 4, 3, 4);
-            txtValorP.Name = "txtValorP";
-            txtValorP.Size = new Size(436, 29);
-            txtValorP.TabIndex = 15;
+            btnExcluirP.BackColor = Color.FromArgb(191, 165, 187);
+            btnExcluirP.FlatAppearance.BorderSize = 0;
+            btnExcluirP.FlatStyle = FlatStyle.Flat;
+            btnExcluirP.Font = new Font("Century Gothic", 10F);
+            btnExcluirP.Location = new Point(1280, 512);
+            btnExcluirP.Name = "btnExcluirP";
+            btnExcluirP.Size = new Size(107, 35);
+            btnExcluirP.TabIndex = 33;
+            btnExcluirP.Text = "Excluir";
+            btnExcluirP.UseVisualStyleBackColor = false;
+            btnExcluirP.Click += btnExcluirP_Click;
             // 
-            // ClienteP
+            // btnEditarP
             // 
-            ClienteP.FormattingEnabled = true;
-            ClienteP.Items.AddRange(new object[] { "Tecido", "Linha", "Aviamentos" });
-            ClienteP.Location = new Point(23, 103);
-            ClienteP.Name = "ClienteP";
-            ClienteP.Size = new Size(436, 29);
-            ClienteP.TabIndex = 14;
-            // 
-            // TipodeServicoP
-            // 
-            TipodeServicoP.FormattingEnabled = true;
-            TipodeServicoP.Items.AddRange(new object[] { "Tecido", "Linha", "Aviamentos" });
-            TipodeServicoP.Location = new Point(558, 104);
-            TipodeServicoP.Name = "TipodeServicoP";
-            TipodeServicoP.Size = new Size(436, 29);
-            TipodeServicoP.TabIndex = 13;
-            // 
-            // StatusP
-            // 
-            StatusP.FormattingEnabled = true;
-            StatusP.Items.AddRange(new object[] { "Tecido", "Linha", "Aviamentos" });
-            StatusP.Location = new Point(558, 197);
-            StatusP.Name = "StatusP";
-            StatusP.Size = new Size(436, 29);
-            StatusP.TabIndex = 12;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(558, 169);
-            label11.Name = "label11";
-            label11.Size = new Size(56, 23);
-            label11.TabIndex = 11;
-            label11.Text = "Status";
-            // 
-            // btnVoltarP
-            // 
-            btnVoltarP.BackColor = Color.White;
-            btnVoltarP.FlatAppearance.BorderSize = 0;
-            btnVoltarP.FlatStyle = FlatStyle.Flat;
-            btnVoltarP.Font = new Font("Century Gothic", 10F);
-            btnVoltarP.Location = new Point(750, 260);
-            btnVoltarP.Name = "btnVoltarP";
-            btnVoltarP.Size = new Size(107, 35);
-            btnVoltarP.TabIndex = 9;
-            btnVoltarP.Text = "Voltar";
-            btnVoltarP.UseVisualStyleBackColor = false;
-            // 
-            // btnSalvarP
-            // 
-            btnSalvarP.BackColor = Color.FromArgb(255, 191, 195);
-            btnSalvarP.FlatAppearance.BorderSize = 0;
-            btnSalvarP.FlatStyle = FlatStyle.Flat;
-            btnSalvarP.Font = new Font("Century Gothic", 10F);
-            btnSalvarP.Location = new Point(887, 260);
-            btnSalvarP.Name = "btnSalvarP";
-            btnSalvarP.Size = new Size(107, 35);
-            btnSalvarP.TabIndex = 8;
-            btnSalvarP.Text = "Salvar";
-            btnSalvarP.UseVisualStyleBackColor = false;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Century Gothic", 9.75F);
-            label5.Location = new Point(23, 171);
-            label5.Name = "label5";
-            label5.Size = new Size(54, 21);
-            label5.TabIndex = 1;
-            label5.Text = "Valor";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Century Gothic", 9.75F);
-            label4.Location = new Point(23, 77);
-            label4.Name = "label4";
-            label4.Size = new Size(69, 21);
-            label4.TabIndex = 0;
-            label4.Text = "Cliente";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(23, 28);
-            label7.Name = "label7";
-            label7.Size = new Size(215, 23);
-            label7.TabIndex = 2;
-            label7.Text = "Cadastre seu pedido";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Century Gothic", 9.75F);
-            label6.Location = new Point(558, 77);
-            label6.Name = "label6";
-            label6.Size = new Size(136, 21);
-            label6.TabIndex = 1;
-            label6.Text = "Tipo de serviço";
+            btnEditarP.BackColor = Color.White;
+            btnEditarP.FlatAppearance.BorderSize = 0;
+            btnEditarP.FlatStyle = FlatStyle.Flat;
+            btnEditarP.Font = new Font("Century Gothic", 10F);
+            btnEditarP.Location = new Point(1143, 512);
+            btnEditarP.Name = "btnEditarP";
+            btnEditarP.Size = new Size(107, 35);
+            btnEditarP.TabIndex = 34;
+            btnEditarP.Text = "Editar";
+            btnEditarP.UseVisualStyleBackColor = false;
             // 
             // TelaPedidos
             // 
@@ -514,6 +499,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1475, 827);
+            Controls.Add(btnEditarP);
+            Controls.Add(btnExcluirP);
             Controls.Add(panel3);
             Controls.Add(dgvPedidos);
             Controls.Add(label8);
@@ -564,22 +551,19 @@
         private PictureBox pictureBox3;
         private TextBox txtBuscaP;
         private DataGridView dgvPedidos;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column6;
-        private DataGridViewTextBoxColumn Column7;
-        private DataGridViewTextBoxColumn Column8;
         private Label label8;
-        private GroupBox CadastrarNovoCliente;
-        private ComboBox StatusP;
-        private Label label11;
-        private Button btnVoltarP;
-        private Button btnSalvarP;
-        private Label label5;
-        private Label label4;
-        private Label label7;
-        private ComboBox TipodeServicoP;
         private Label label6;
+        private Label label7;
+        private Label label4;
+        private Label label5;
+        private Button btnSalvarP;
+        private Label label11;
+        private ComboBox cmbStatusP;
+        private ComboBox cmbTipodeServicoP;
+        private ComboBox cmbClienteP;
         private TextBox txtValorP;
-        private ComboBox ClienteP;
+        private GroupBox CadastrarNovoCliente;
+        private Button btnExcluirP;
+        private Button btnEditarP;
     }
 }

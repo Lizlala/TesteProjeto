@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaServicos));
             btnAbrirCadastroS = new Button();
             dgvServicos = new DataGridView();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             pictureBox2 = new PictureBox();
             txtBuscaS = new TextBox();
@@ -84,7 +82,7 @@
             btnAbrirCadastroS.Location = new Point(818, 38);
             btnAbrirCadastroS.Name = "btnAbrirCadastroS";
             btnAbrirCadastroS.Size = new Size(215, 49);
-            btnAbrirCadastroS.TabIndex = 24;
+            btnAbrirCadastroS.TabIndex = 4;
             btnAbrirCadastroS.Text = "Novo serviço";
             btnAbrirCadastroS.UseVisualStyleBackColor = false;
             btnAbrirCadastroS.Click += btnAbrirCadastroS_Click;
@@ -92,36 +90,35 @@
             // dgvServicos
             // 
             dgvServicos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvServicos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvServicos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvServicos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvServicos.BackgroundColor = Color.White;
             dgvServicos.BorderStyle = BorderStyle.None;
             dgvServicos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvServicos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvServicos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvServicos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvServicos.ColumnHeadersHeight = 50;
-            dgvServicos.Columns.AddRange(new DataGridViewColumn[] { Column2, Column3 });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = Color.MediumAquamarine;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvServicos.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvServicos.DefaultCellStyle = dataGridViewCellStyle3;
             dgvServicos.EnableHeadersVisualStyles = false;
             dgvServicos.Location = new Point(375, 404);
             dgvServicos.Name = "dgvServicos";
@@ -130,19 +127,7 @@
             dgvServicos.RowTemplate.Height = 40;
             dgvServicos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvServicos.Size = new Size(1055, 548);
-            dgvServicos.TabIndex = 25;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Tipo de Serviço";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Valor";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
+            dgvServicos.TabIndex = 8;
             // 
             // panel2
             // 
@@ -170,7 +155,7 @@
             txtBuscaS.Multiline = true;
             txtBuscaS.Name = "txtBuscaS";
             txtBuscaS.Size = new Size(955, 39);
-            txtBuscaS.TabIndex = 0;
+            txtBuscaS.TabIndex = 5;
             txtBuscaS.TextChanged += txtBuscaS_TextChanged;
             // 
             // label3
@@ -211,7 +196,7 @@
             btnServicosS.Location = new Point(26, 572);
             btnServicosS.Name = "btnServicosS";
             btnServicosS.Size = new Size(291, 64);
-            btnServicosS.TabIndex = 6;
+            btnServicosS.TabIndex = 2;
             btnServicosS.Text = "Serviços";
             btnServicosS.UseVisualStyleBackColor = false;
             // 
@@ -248,7 +233,7 @@
             btnPedidosS.Location = new Point(26, 681);
             btnPedidosS.Name = "btnPedidosS";
             btnPedidosS.Size = new Size(291, 64);
-            btnPedidosS.TabIndex = 2;
+            btnPedidosS.TabIndex = 3;
             btnPedidosS.Text = "Pedidos";
             btnPedidosS.UseVisualStyleBackColor = false;
             btnPedidosS.Click += btnPedidosS_Click;
@@ -295,7 +280,7 @@
             panelCadastroS.BackColor = Color.White;
             panelCadastroS.Controls.Add(label8);
             panelCadastroS.Controls.Add(CadastrarNovoCliente);
-            panelCadastroS.Location = new Point(342, 3);
+            panelCadastroS.Location = new Point(342, 0);
             panelCadastroS.Margin = new Padding(3, 4, 3, 4);
             panelCadastroS.Name = "panelCadastroS";
             panelCadastroS.Size = new Size(1134, 827);
@@ -336,7 +321,7 @@
             cmbTipodeServicoS.Location = new Point(26, 188);
             cmbTipodeServicoS.Name = "cmbTipodeServicoS";
             cmbTipodeServicoS.Size = new Size(436, 29);
-            cmbTipodeServicoS.TabIndex = 24;
+            cmbTipodeServicoS.TabIndex = 0;
             cmbTipodeServicoS.SelectedIndexChanged += cmbTipodeServicoS_SelectedIndexChanged;
             // 
             // label10
@@ -358,7 +343,7 @@
             btnVoltarS.Location = new Point(890, 271);
             btnVoltarS.Name = "btnVoltarS";
             btnVoltarS.Size = new Size(107, 35);
-            btnVoltarS.TabIndex = 9;
+            btnVoltarS.TabIndex = 2;
             btnVoltarS.Text = "Voltar";
             btnVoltarS.UseVisualStyleBackColor = false;
             // 
@@ -371,7 +356,7 @@
             btnSalvarS.Location = new Point(751, 271);
             btnSalvarS.Name = "btnSalvarS";
             btnSalvarS.Size = new Size(107, 35);
-            btnSalvarS.TabIndex = 8;
+            btnSalvarS.TabIndex = 3;
             btnSalvarS.Text = "Salvar";
             btnSalvarS.UseVisualStyleBackColor = false;
             btnSalvarS.Click += btnSalvarS_Click;
@@ -382,7 +367,7 @@
             txtValorS.Margin = new Padding(3, 4, 3, 4);
             txtValorS.Name = "txtValorS";
             txtValorS.Size = new Size(436, 29);
-            txtValorS.TabIndex = 5;
+            txtValorS.TabIndex = 1;
             // 
             // label5
             // 
@@ -423,7 +408,7 @@
             btnEditarS.Location = new Point(782, 225);
             btnEditarS.Name = "btnEditarS";
             btnEditarS.Size = new Size(107, 35);
-            btnEditarS.TabIndex = 34;
+            btnEditarS.TabIndex = 7;
             btnEditarS.Text = "Editar";
             btnEditarS.UseVisualStyleBackColor = false;
             btnEditarS.Click += btnEditarS_Click;
@@ -437,7 +422,7 @@
             btnExcluirS.Location = new Point(926, 225);
             btnExcluirS.Name = "btnExcluirS";
             btnExcluirS.Size = new Size(107, 35);
-            btnExcluirS.TabIndex = 33;
+            btnExcluirS.TabIndex = 6;
             btnExcluirS.Text = "Excluir ";
             btnExcluirS.UseVisualStyleBackColor = false;
             btnExcluirS.Click += btnExcluirS_Click;
@@ -542,8 +527,6 @@
         private Button btnVoltarS;
         private Button btnSalvarS;
         private Panel panelCadastroS;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
         private ComboBox cmbTipodeServicoS;
         private Button btnEditarS;
         private Button btnExcluirS;

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaEstoque));
             btnAbrirCadastroE = new Button();
             dgvEstoque = new DataGridView();
@@ -83,7 +83,7 @@
             btnAbrirCadastroE.Location = new Point(823, 42);
             btnAbrirCadastroE.Name = "btnAbrirCadastroE";
             btnAbrirCadastroE.Size = new Size(215, 49);
-            btnAbrirCadastroE.TabIndex = 18;
+            btnAbrirCadastroE.TabIndex = 4;
             btnAbrirCadastroE.Text = "+ Adicionar Item";
             btnAbrirCadastroE.UseVisualStyleBackColor = false;
             btnAbrirCadastroE.Click += btnAbrirCadastroE_Click;
@@ -91,35 +91,35 @@
             // dgvEstoque
             // 
             dgvEstoque.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvEstoque.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvEstoque.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvEstoque.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEstoque.BackgroundColor = Color.White;
             dgvEstoque.BorderStyle = BorderStyle.None;
             dgvEstoque.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvEstoque.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvEstoque.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvEstoque.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvEstoque.ColumnHeadersHeight = 50;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvEstoque.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvEstoque.DefaultCellStyle = dataGridViewCellStyle6;
             dgvEstoque.EnableHeadersVisualStyles = false;
             dgvEstoque.Location = new Point(381, 367);
             dgvEstoque.Name = "dgvEstoque";
@@ -156,7 +156,7 @@
             txtBuscaE.Multiline = true;
             txtBuscaE.Name = "txtBuscaE";
             txtBuscaE.Size = new Size(946, 39);
-            txtBuscaE.TabIndex = 0;
+            txtBuscaE.TabIndex = 5;
             txtBuscaE.TextChanged += txtBuscaE_TextChanged;
             // 
             // label3
@@ -207,7 +207,7 @@
             btnServicosE.Location = new Point(26, 552);
             btnServicosE.Name = "btnServicosE";
             btnServicosE.Size = new Size(291, 64);
-            btnServicosE.TabIndex = 6;
+            btnServicosE.TabIndex = 2;
             btnServicosE.Text = "Serviços";
             btnServicosE.UseVisualStyleBackColor = false;
             btnServicosE.Click += btnServicosE_Click;
@@ -245,7 +245,7 @@
             btnPedidosE.Location = new Point(26, 663);
             btnPedidosE.Name = "btnPedidosE";
             btnPedidosE.Size = new Size(291, 64);
-            btnPedidosE.TabIndex = 2;
+            btnPedidosE.TabIndex = 3;
             btnPedidosE.Text = "Pedidos";
             btnPedidosE.UseVisualStyleBackColor = false;
             btnPedidosE.Click += btnPedidosE_Click;
@@ -295,7 +295,7 @@
             btnEditarE.Location = new Point(785, 238);
             btnEditarE.Name = "btnEditarE";
             btnEditarE.Size = new Size(107, 35);
-            btnEditarE.TabIndex = 32;
+            btnEditarE.TabIndex = 6;
             btnEditarE.Text = "Editar";
             btnEditarE.UseVisualStyleBackColor = false;
             btnEditarE.Click += btnEditarE_Click;
@@ -309,7 +309,7 @@
             btnExcluirE.Location = new Point(918, 238);
             btnExcluirE.Name = "btnExcluirE";
             btnExcluirE.Size = new Size(107, 35);
-            btnExcluirE.TabIndex = 31;
+            btnExcluirE.TabIndex = 7;
             btnExcluirE.Text = "Excluir ";
             btnExcluirE.UseVisualStyleBackColor = false;
             btnExcluirE.Click += btnExcluirE_Click;
@@ -330,7 +330,7 @@
             // panelCadastroE
             // 
             panelCadastroE.Controls.Add(groupBox1);
-            panelCadastroE.Location = new Point(342, 0);
+            panelCadastroE.Location = new Point(342, 5);
             panelCadastroE.Name = "panelCadastroE";
             panelCadastroE.Size = new Size(1136, 822);
             panelCadastroE.TabIndex = 33;
@@ -362,7 +362,7 @@
             btnVoltarE.Location = new Point(902, 334);
             btnVoltarE.Name = "btnVoltarE";
             btnVoltarE.Size = new Size(107, 35);
-            btnVoltarE.TabIndex = 7;
+            btnVoltarE.TabIndex = 3;
             btnVoltarE.Text = "Voltar";
             btnVoltarE.UseVisualStyleBackColor = false;
             btnVoltarE.Click += btnVoltarE_Click;
@@ -386,7 +386,7 @@
             btnSalvarE.Location = new Point(729, 334);
             btnSalvarE.Name = "btnSalvarE";
             btnSalvarE.Size = new Size(107, 35);
-            btnSalvarE.TabIndex = 6;
+            btnSalvarE.TabIndex = 4;
             btnSalvarE.Text = "Salvar";
             btnSalvarE.UseVisualStyleBackColor = false;
             btnSalvarE.Click += btnSalvarE_Click;
@@ -418,7 +418,7 @@
             cmbCategoriaE.Location = new Point(744, 202);
             cmbCategoriaE.Name = "cmbCategoriaE";
             cmbCategoriaE.Size = new Size(238, 28);
-            cmbCategoriaE.TabIndex = 1;
+            cmbCategoriaE.TabIndex = 2;
             // 
             // txtNomeItemE
             // 
@@ -442,7 +442,7 @@
             QuantidadeE.Location = new Point(386, 202);
             QuantidadeE.Name = "QuantidadeE";
             QuantidadeE.Size = new Size(235, 27);
-            QuantidadeE.TabIndex = 2;
+            QuantidadeE.TabIndex = 1;
             // 
             // TelaEstoque
             // 
