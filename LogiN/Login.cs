@@ -1,11 +1,15 @@
+using MySql.Data.MySqlClient;
+using System.Web;
 namespace LogiN
 {
     public partial class Login : System.Windows.Forms.Form
     {
+        string conexao = "server=localhost; uid = root; PWd =; Database=fiodeouro;";
         public Login()
         {
             InitializeComponent();
             this.AcceptButton = btnEntrar;
+
 
         }
 
@@ -24,7 +28,7 @@ namespace LogiN
             string senha = txtSenha.Text;
 
 
-            if (usuario == "usuario" && senha == "123456")
+            if (usuario == "usu" && senha == "1234")
             {
                 TelaEstoque principal = new TelaEstoque();
                 principal.Show();
@@ -39,6 +43,49 @@ namespace LogiN
         private void txtSenha_TextChanged(object sender, EventArgs e)
         {
             txtSenha.PasswordChar = '*';
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalvarS_Click(object sender, EventArgs e)
+        {
+            MySqlConnection con = new MySqlConnection(conexao);
+            try
+            {
+                con.Open();
+                string sql = "INSERT INTO Login_usuário(nome, cpf,senha) VALUES (@nome,@cpf,@senha);";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                cmd.Parameters.AddWithValue("@cpf", txtCpf.Text);
+                cmd.Parameters.AddWithValue("@senha", txtcadastroSenha.Text);
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Cadastro feito com sucesso, parabéns!");
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+        private void btnVoltarS_Click(object sender, EventArgs e)
+        {
+            PainelUsuario.Visible = false;
+        }
+
+        private void btncadastraL_Click_1(object sender, EventArgs e)
+        {
+            PainelUsuario.Visible=true;
         }
     }
 }
