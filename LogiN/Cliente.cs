@@ -28,7 +28,6 @@ namespace LogiN
             CarregarClientes();
         }
 
-        // ================= CARREGAR =================
         private void CarregarClientes()
         {
             using (MySqlConnection conn = new MySqlConnection(conexaoString))
@@ -55,32 +54,113 @@ namespace LogiN
             }
         }
 
-        // ================= ESTILO =================
         private void EstilizarGrid()
         {
             dgvClientes.EnableHeadersVisualStyles = false;
 
+            // FONTES
+            Font fontePadrao = new Font("Century Gothic", 10F, FontStyle.Regular);
+            Font fonteCabecalho = new Font("Century Gothic", 10F, FontStyle.Bold);
+
+            // COR DA SELEÇÃO
+            Color corSelecaoLinha = Color.FromArgb(191, 165, 187);
+
+            // FUNDO E BORDAS
+            dgvClientes.BackgroundColor = Color.White;
+            dgvClientes.GridColor = Color.White;
+            dgvClientes.BorderStyle = BorderStyle.None;
+            dgvClientes.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+            // CABEÇALHO
             dgvClientes.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             dgvClientes.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
 
-            dgvClientes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(191, 165, 187);
-            dgvClientes.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgvClientes.ColumnHeadersDefaultCellStyle.SelectionBackColor =
+                Color.White;
 
-            dgvClientes.BorderStyle = BorderStyle.None;
-            dgvClientes.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvClientes.GridColor = Color.White;
+            dgvClientes.ColumnHeadersDefaultCellStyle.SelectionForeColor =
+                Color.Black;
 
+            dgvClientes.ColumnHeadersDefaultCellStyle.Font =
+                fonteCabecalho;
+
+            dgvClientes.ColumnHeadersBorderStyle =
+                DataGridViewHeaderBorderStyle.None;
+
+            dgvClientes.ColumnHeadersHeight = 35;
+
+            // ESTILO DAS CÉLULAS
+            dgvClientes.DefaultCellStyle.BackColor = Color.White;
+            dgvClientes.DefaultCellStyle.ForeColor = Color.Black;
+
+            dgvClientes.DefaultCellStyle.SelectionBackColor =
+                corSelecaoLinha;
+
+            dgvClientes.DefaultCellStyle.SelectionForeColor =
+                Color.Black;
+
+            dgvClientes.DefaultCellStyle.Font =
+                fontePadrao;
+
+            dgvClientes.DefaultCellStyle.Alignment =
+                DataGridViewContentAlignment.MiddleLeft;
+
+            // REMOVE EFEITO ZEBRA
+            dgvClientes.AlternatingRowsDefaultCellStyle.BackColor =
+                Color.White;
+
+            dgvClientes.AlternatingRowsDefaultCellStyle.ForeColor =
+                Color.Black;
+
+            dgvClientes.AlternatingRowsDefaultCellStyle.SelectionBackColor =
+                corSelecaoLinha;
+
+            dgvClientes.AlternatingRowsDefaultCellStyle.SelectionForeColor =
+                Color.Black;
+
+            dgvClientes.AlternatingRowsDefaultCellStyle.Font =
+                fontePadrao;
+
+            // COMPORTAMENTO
             dgvClientes.RowHeadersVisible = false;
-            dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClientes.MultiSelect = false;
-            dgvClientes.AllowUserToAddRows = false;
-            dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            dgvClientes.SelectionMode =
+                DataGridViewSelectionMode.FullRowSelect;
+
+            dgvClientes.MultiSelect = false;
+
+            dgvClientes.AllowUserToAddRows = false;
+
+            dgvClientes.ReadOnly = true;
+
+            dgvClientes.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvClientes.AutoSizeRowsMode =
+                DataGridViewAutoSizeRowsMode.None;
+
+            dgvClientes.RowTemplate.Height = 35;
+
+            dgvClientes.ScrollBars = ScrollBars.Vertical;
+
+            // GARANTE MESMA FONTE EM TODAS AS LINHAS
+            foreach (DataGridViewRow row in dgvClientes.Rows)
+            {
+                row.DefaultCellStyle.Font = fontePadrao;
+            }
+
+            // ESCONDE ID
             if (dgvClientes.Columns["Id_cliente"] != null)
                 dgvClientes.Columns["Id_cliente"].Visible = false;
+
+            // REMOVE SELEÇÃO AUTOMÁTICA
+            dgvClientes.ClearSelection();
+            dgvClientes.CurrentCell = null;
         }
 
-        // ================= NOVO =================
+
+
+
         private void btnNovoClienteC_Click(object sender, EventArgs e)
         {
             modoEdicao = false;
@@ -94,7 +174,6 @@ namespace LogiN
             panelCadastroCliente.BringToFront();
         }
 
-        // ================= EDITAR =================
         private void btnEditarC_Click(object sender, EventArgs e)
         {
             if (dgvClientes.CurrentRow != null)
@@ -117,12 +196,17 @@ namespace LogiN
             }
         }
 
-        // ================= SALVAR =================
         private void btnSalvarC_Click(object sender, EventArgs e)
         {
             string nome = txtNomeC.Text;
             string cpf = txtCPF.Text;
             string telefone = txtTelefoneC.Text;
+
+            if (txtCPF.Text.Length < 11 || txtTelefoneC.Text.Length < 11)
+            {
+                MessageBox.Show("CPF ou Telefone inválidos");
+                return;
+            }
 
             if (!string.IsNullOrWhiteSpace(nome) &&
                 !string.IsNullOrWhiteSpace(cpf) &&
@@ -159,7 +243,7 @@ namespace LogiN
                         }
 
                         panelCadastroCliente.Visible = false;
-                        dgvClientes.Visible = true;
+                        dgvClientes.Visible = true; 
 
                         CarregarClientes();
                     }
@@ -175,7 +259,6 @@ namespace LogiN
             }
         }
 
-        // ================= EXCLUIR =================
         private void btnExcluirC_Click(object sender, EventArgs e)
         {
             if (dgvClientes.CurrentRow != null)
@@ -208,14 +291,12 @@ namespace LogiN
             }
         }
 
-        // ================= VOLTAR =================
         private void btnVoltarC_Click(object sender, EventArgs e)
         {
             panelCadastroCliente.Visible = false;
             dgvClientes.Visible = true;
         }
 
-        // ================= BUSCA =================
         private void txtBuscaC_TextChanged(object sender, EventArgs e)
         {
             string termo = txtBuscaC.Text.ToLower();
@@ -237,7 +318,7 @@ namespace LogiN
             cm.ResumeBinding();
         }
 
-        // ================= NAVEGAÇÃO =================
+
         private void btnEstoqueC_Click(object sender, EventArgs e)
         {
             new TelaEstoque().Show();
@@ -254,6 +335,31 @@ namespace LogiN
         {
             new TelaPedidos().Show();
             this.Hide();
+        }
+
+
+        private void txtCPF_TextChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void txtNomeC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) &&
+                !char.IsWhiteSpace(e.KeyChar) &&
+                e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtTelefoneC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) &&
+            e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -39,14 +39,14 @@ namespace LogiN
                 {
                     conn.Open();
 
-                    string sql = @"SELECT p.Id,
-                                          c.Nome AS Cliente,
-                                          s.Tipo AS Servico,
-                                          p.Valor,
-                                          p.Status
-                                   FROM Pedidos p
-                                   JOIN Clientes c ON p.ClienteId = c.Id
-                                   JOIN Servicos s ON p.ServicoId = s.Id";
+                    string sql = @"SELECT p.id_pedido_servico,
+                                          c.nome AS Clientes,
+                                          s.nome_servico AS cadastro_servico,
+                                          p.valor,
+                                          p.status_pedido
+                                  FROM pedidos_servicos p
+                                  JOIN clientes c ON p.id_cliente = c.id_cliente
+                                  JOIN cadastro_servico s ON p.id_servico = s.id_cadastro_servico";
 
                     MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
                     DataTable dt = new DataTable();
@@ -69,14 +69,14 @@ namespace LogiN
             {
                 conn.Open();
 
-                string sql = "SELECT Id, Nome FROM Clientes";
+                string sql = "SELECT Id_cliente, Nome FROM Clientes";
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
                 cmbClienteP.DataSource = dt;
                 cmbClienteP.DisplayMember = "Nome";
-                cmbClienteP.ValueMember = "Id";
+                cmbClienteP.ValueMember = "Id_cliente";
             }
         }
 
@@ -86,14 +86,14 @@ namespace LogiN
             {
                 conn.Open();
 
-                string sql = "SELECT Id, Tipo, Valor FROM Servicos";
+                string sql = "SELECT Id_cadastro_servico, nome_servico, Valor FROM cadastro_Servico";
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
                 cmbTipodeServicoP.DataSource = dt;
-                cmbTipodeServicoP.DisplayMember = "Tipo";
-                cmbTipodeServicoP.ValueMember = "Id";
+                cmbTipodeServicoP.DisplayMember = "nome_servico";
+                cmbTipodeServicoP.ValueMember = "Id_cadastro_servico";
             }
         }
 
@@ -156,12 +156,12 @@ namespace LogiN
             // 🔥 scroll funcionando
             dgvPedidos.ScrollBars = ScrollBars.Vertical;
 
-            dgvPedidos.Columns["Id"].Visible = false;
+            dgvPedidos.Columns["Id_pedido_servico"].Visible = false;
 
-            dgvPedidos.Columns["Cliente"].HeaderText = "Cliente";
-            dgvPedidos.Columns["Servico"].HeaderText = "Serviço";
+            dgvPedidos.Columns["Clientes"].HeaderText = "Cliente";
+            dgvPedidos.Columns["cadastro_servico"].HeaderText = "Serviço";
             dgvPedidos.Columns["Valor"].HeaderText = "Valor";
-            dgvPedidos.Columns["Status"].HeaderText = "Status";
+            dgvPedidos.Columns["Status_pedido"].HeaderText = "Status";
 
             dgvPedidos.Columns["Valor"].DefaultCellStyle.Format = "C2";
 
@@ -175,68 +175,104 @@ namespace LogiN
                 txtValorP.Text = row["Valor"].ToString();
             }
         }
-        
+
         private void btnSalvarP_Click(object sender, EventArgs e)
         {
-            int clienteId = Convert.ToInt32(cmbClienteP.SelectedValue);
-            int servicoId = Convert.ToInt32(cmbTipodeServicoP.SelectedValue);
-            string status = cmbStatusP.Text;
-
-            decimal valor;
-            if (!decimal.TryParse(txtValorP.Text.Replace(",", "."),
-                System.Globalization.NumberStyles.Any,
-                System.Globalization.CultureInfo.InvariantCulture,
-                out valor))
+            try
             {
-                MessageBox.Show("Valor inválido!");
-                return;
-            }
+                int clienteId = Convert.ToInt32(cmbClienteP.SelectedValue);
+                int servicoId = Convert.ToInt32(cmbTipodeServicoP.SelectedValue);
+                string status = cmbStatusP.Text;
 
-            using (MySqlConnection conn = new MySqlConnection(conexao))
+                decimal valor;
+
+                if (!decimal.TryParse(
+                    txtValorP.Text.Replace(",", "."),
+                    System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    out valor))
+                {
+                    MessageBox.Show("Valor inválido!");
+                    return;
+                }
+
+                using (MySqlConnection conn =
+                    new MySqlConnection(conexao))
+                {
+                    conn.Open();
+
+                    // INSERT
+                    if (!modoEdicao)
+                    {
+                        string sql =
+                            "INSERT INTO Pedidos_servicos " +
+                            "(id_cliente, id_servico, Valor, Status_pedido) " +
+                            "VALUES (@c,@s,@v,@st)";
+
+                        MySqlCommand cmd =
+                            new MySqlCommand(sql, conn);
+
+                        cmd.Parameters.AddWithValue("@c", clienteId);
+                        cmd.Parameters.AddWithValue("@s", servicoId);
+                        cmd.Parameters.AddWithValue("@v", valor);
+                        cmd.Parameters.AddWithValue("@st", status);
+
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Pedido cadastrado!");
+                    }
+
+                    // UPDATE
+                    else
+                    {
+                        string sql =
+                            "UPDATE Pedidos_servicos " +
+                            "SET id_cliente=@c, " +
+                            "id_servico=@s, " +
+                            "Valor=@v, " +
+                            "Status_pedido=@st " +
+                            "WHERE Id_pedido_servico=@id";
+
+                        MySqlCommand cmd =
+                            new MySqlCommand(sql, conn);
+
+                        cmd.Parameters.AddWithValue("@c", clienteId);
+                        cmd.Parameters.AddWithValue("@s", servicoId);
+                        cmd.Parameters.AddWithValue("@v", valor);
+                        cmd.Parameters.AddWithValue("@st", status);
+                        cmd.Parameters.AddWithValue("@id", idSelecionado);
+
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Pedido atualizado!");
+
+                        modoEdicao = false;
+                    }
+                }
+
+                CarregarPedidos();
+
+                dgvPedidos.ClearSelection();
+            }
+            catch (Exception ex)
             {
-                conn.Open();
-
-                if (!modoEdicao)
-                {
-                    string sql = "INSERT INTO Pedidos (ClienteId, ServicoId, Valor, Status) VALUES (@c,@s,@v,@st)";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                    cmd.Parameters.AddWithValue("@c", clienteId);
-                    cmd.Parameters.AddWithValue("@s", servicoId);
-                    cmd.Parameters.AddWithValue("@v", valor);
-                    cmd.Parameters.AddWithValue("@st", status);
-
-                    cmd.ExecuteNonQuery();
-                }
-                else
-                {
-                    string sql = "UPDATE Pedidos SET ClienteId=@c, ServicoId=@s, Valor=@v, Status=@st WHERE Id=@id";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                    cmd.Parameters.AddWithValue("@c", clienteId);
-                    cmd.Parameters.AddWithValue("@s", servicoId);
-                    cmd.Parameters.AddWithValue("@v", valor);
-                    cmd.Parameters.AddWithValue("@st", status);
-                    cmd.Parameters.AddWithValue("@id", idSelecionado);
-
-                    cmd.ExecuteNonQuery();
-                }
+                MessageBox.Show(
+                    "Erro ao salvar:\n\n" + ex.ToString());
             }
-
-            CarregarPedidos();
         }
+
 
         private void btnExcluirP_Click(object sender, EventArgs e)
         {
             if (dgvPedidos.CurrentRow != null)
             {
-                int id = Convert.ToInt32(dgvPedidos.CurrentRow.Cells["Id"].Value);
+                int id = Convert.ToInt32(dgvPedidos.CurrentRow.Cells["Id_pedido_servico"].Value);
 
                 using (MySqlConnection conn = new MySqlConnection(conexao))
                 {
                     conn.Open();
 
-                    string sql = "DELETE FROM Pedidos WHERE Id=@id";
+                    string sql = "DELETE FROM Pedidos_servicos WHERE Id_pedido_servico=@id";
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -252,7 +288,7 @@ namespace LogiN
             if (dgvPedidos.DataSource is DataTable dt)
             {
                 dt.DefaultView.RowFilter =
-                    $"Cliente LIKE '%{txtBuscaP.Text}%' OR Servico LIKE '%{txtBuscaP.Text}%'";
+                    $"Clientes LIKE '%{txtBuscaP.Text}%' OR cadastro_Servico LIKE '%{txtBuscaP.Text}%'";
             }
         }
 
@@ -272,6 +308,77 @@ namespace LogiN
         {
             new TelaServicos().Show();
             this.Hide();
+        }
+
+        private void txtValorP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) &&
+            e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cmbClienteP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) &&
+            !char.IsWhiteSpace(e.KeyChar) &&
+            e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cmbTipodeServicoP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) &&
+            !char.IsWhiteSpace(e.KeyChar) &&
+            e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cmbStatusP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) &&
+            !char.IsWhiteSpace(e.KeyChar) &&
+            e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnEditarP_Click(object sender, EventArgs e)
+        {
+            if (dgvPedidos.CurrentRow != null)
+            {
+                modoEdicao = true;
+
+                idSelecionado = Convert.ToInt32(
+                    dgvPedidos.CurrentRow.Cells["Id_pedido_servico"].Value);
+
+                // CLIENTE
+                cmbClienteP.Text =
+                    dgvPedidos.CurrentRow.Cells["Clientes"].Value.ToString();
+
+                // SERVIÇO
+                cmbTipodeServicoP.Text =
+                    dgvPedidos.CurrentRow.Cells["cadastro_servico"].Value.ToString();
+
+                // VALOR
+                txtValorP.Text =
+                    dgvPedidos.CurrentRow.Cells["Valor"].Value.ToString();
+
+                // STATUS
+                cmbStatusP.Text =
+                    dgvPedidos.CurrentRow.Cells["Status_pedido"].Value.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Selecione um pedido!");
+            }
+        
         }
     }
 }

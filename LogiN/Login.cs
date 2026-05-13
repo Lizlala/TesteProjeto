@@ -44,6 +44,7 @@ namespace LogiN
             string senha = txtSenha.Text;
 
 
+
             if (usuario == "Ad" && senha == "123")
             {
                 TelaEstoque principal = new TelaEstoque();
@@ -61,15 +62,6 @@ namespace LogiN
             txtSenha.PasswordChar = '*';
         }
 
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnSalvarS_Click(object sender, EventArgs e)
         {
@@ -92,11 +84,6 @@ namespace LogiN
 
             }
 
-        }
-
-        private void btnVoltarS_Click(object sender, EventArgs e)
-        {
-            PainelUsuario.Visible = false;
         }
 
         private void btncadastraL_Click_1(object sender, EventArgs e)
@@ -200,6 +187,11 @@ namespace LogiN
         private void button2_Click_1(object sender, EventArgs e)
         {
             EsqueceuSenhaPainel.Visible = false;
+        }
+
+        private void btnVoltarS_Click(object sender, EventArgs e)
+        {
+            PainelUsuario.Visible = false;
         }
     }
 }

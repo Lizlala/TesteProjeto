@@ -332,6 +332,7 @@
             cmbTipodeServicoS.Size = new Size(382, 25);
             cmbTipodeServicoS.TabIndex = 0;
             cmbTipodeServicoS.SelectedIndexChanged += cmbTipodeServicoS_SelectedIndexChanged;
+            cmbTipodeServicoS.KeyPress += cmbTipodeServicoS_KeyPress;
             // 
             // label10
             // 
@@ -379,6 +380,7 @@
             txtValorS.Name = "txtValorS";
             txtValorS.Size = new Size(382, 25);
             txtValorS.TabIndex = 1;
+            txtValorS.KeyPress += txtValorS_KeyPress;
             // 
             // label5
             // 

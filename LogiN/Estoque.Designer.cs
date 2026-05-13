@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaEstoque));
             btnAbrirCadastroE = new Button();
             dgvEstoque = new DataGridView();
@@ -80,9 +80,10 @@
             btnAbrirCadastroE.FlatStyle = FlatStyle.Flat;
             btnAbrirCadastroE.Font = new Font("Century Gothic", 12F);
             btnAbrirCadastroE.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAbrirCadastroE.Location = new Point(823, 42);
+            btnAbrirCadastroE.Location = new Point(720, 32);
+            btnAbrirCadastroE.Margin = new Padding(3, 2, 3, 2);
             btnAbrirCadastroE.Name = "btnAbrirCadastroE";
-            btnAbrirCadastroE.Size = new Size(215, 49);
+            btnAbrirCadastroE.Size = new Size(188, 37);
             btnAbrirCadastroE.TabIndex = 4;
             btnAbrirCadastroE.Text = "+ Adicionar Item";
             btnAbrirCadastroE.UseVisualStyleBackColor = false;
@@ -91,43 +92,44 @@
             // dgvEstoque
             // 
             dgvEstoque.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvEstoque.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvEstoque.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvEstoque.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEstoque.BackgroundColor = Color.White;
             dgvEstoque.BorderStyle = BorderStyle.None;
             dgvEstoque.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvEstoque.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvEstoque.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvEstoque.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvEstoque.ColumnHeadersHeight = 50;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = Color.MediumAquamarine;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvEstoque.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvEstoque.DefaultCellStyle = dataGridViewCellStyle3;
             dgvEstoque.EnableHeadersVisualStyles = false;
-            dgvEstoque.Location = new Point(381, 405);
+            dgvEstoque.Location = new Point(333, 304);
+            dgvEstoque.Margin = new Padding(3, 2, 3, 2);
             dgvEstoque.Name = "dgvEstoque";
             dgvEstoque.RowHeadersVisible = false;
             dgvEstoque.RowHeadersWidth = 51;
             dgvEstoque.RowTemplate.Height = 40;
             dgvEstoque.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvEstoque.Size = new Size(1055, 390);
+            dgvEstoque.Size = new Size(923, 292);
             dgvEstoque.TabIndex = 19;
             // 
             // panel2
@@ -135,27 +137,30 @@
             panel2.BackColor = Color.White;
             panel2.Controls.Add(pictureBox2);
             panel2.Controls.Add(txtBuscaE);
-            panel2.Location = new Point(398, 153);
+            panel2.Location = new Point(348, 115);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1028, 63);
+            panel2.Size = new Size(900, 47);
             panel2.TabIndex = 17;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(12, 11);
+            pictureBox2.Location = new Point(10, 8);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(43, 39);
+            pictureBox2.Size = new Size(38, 29);
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
             // 
             // txtBuscaE
             // 
             txtBuscaE.BackColor = Color.White;
-            txtBuscaE.Location = new Point(62, 12);
+            txtBuscaE.Location = new Point(54, 9);
+            txtBuscaE.Margin = new Padding(3, 2, 3, 2);
             txtBuscaE.Multiline = true;
             txtBuscaE.Name = "txtBuscaE";
-            txtBuscaE.Size = new Size(946, 39);
+            txtBuscaE.Size = new Size(828, 30);
             txtBuscaE.TabIndex = 5;
             txtBuscaE.TextChanged += txtBuscaE_TextChanged;
             // 
@@ -163,9 +168,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 10F);
-            label3.Location = new Point(17, 70);
+            label3.Location = new Point(15, 52);
             label3.Name = "label3";
-            label3.Size = new Size(327, 21);
+            label3.Size = new Size(269, 19);
             label3.TabIndex = 16;
             label3.Text = "Gerencie seus materiais e aviamentos";
             // 
@@ -173,9 +178,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 16F, FontStyle.Bold);
-            label2.Location = new Point(17, 23);
+            label2.Location = new Point(15, 17);
             label2.Name = "label2";
-            label2.Size = new Size(278, 32);
+            label2.Size = new Size(228, 26);
             label2.TabIndex = 15;
             label2.Text = "Controle de Estoque";
             // 
@@ -190,8 +195,9 @@
             panel1.Controls.Add(btnEstoqueE);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(336, 827);
+            panel1.Size = new Size(294, 620);
             panel1.TabIndex = 21;
             // 
             // btnServicosE
@@ -204,9 +210,10 @@
             btnServicosE.Font = new Font("Century Gothic", 12F);
             btnServicosE.Image = (Image)resources.GetObject("btnServicosE.Image");
             btnServicosE.ImageAlign = ContentAlignment.MiddleLeft;
-            btnServicosE.Location = new Point(26, 552);
+            btnServicosE.Location = new Point(23, 414);
+            btnServicosE.Margin = new Padding(3, 2, 3, 2);
             btnServicosE.Name = "btnServicosE";
-            btnServicosE.Size = new Size(291, 64);
+            btnServicosE.Size = new Size(255, 48);
             btnServicosE.TabIndex = 2;
             btnServicosE.Text = "Serviços";
             btnServicosE.UseVisualStyleBackColor = false;
@@ -216,18 +223,19 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 13F, FontStyle.Bold);
-            label1.Location = new Point(47, 165);
+            label1.Location = new Point(41, 124);
             label1.Name = "label1";
-            label1.Size = new Size(253, 26);
+            label1.Size = new Size(207, 22);
             label1.TabIndex = 5;
             label1.Text = "Bem-vinda ao Sistema";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(26, 3);
+            pictureBox1.Location = new Point(23, 2);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(291, 172);
+            pictureBox1.Size = new Size(255, 129);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
@@ -242,9 +250,10 @@
             btnPedidosE.Font = new Font("Century Gothic", 12F);
             btnPedidosE.Image = (Image)resources.GetObject("btnPedidosE.Image");
             btnPedidosE.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPedidosE.Location = new Point(26, 663);
+            btnPedidosE.Location = new Point(23, 497);
+            btnPedidosE.Margin = new Padding(3, 2, 3, 2);
             btnPedidosE.Name = "btnPedidosE";
-            btnPedidosE.Size = new Size(291, 64);
+            btnPedidosE.Size = new Size(255, 48);
             btnPedidosE.TabIndex = 3;
             btnPedidosE.Text = "Pedidos";
             btnPedidosE.UseVisualStyleBackColor = false;
@@ -260,9 +269,10 @@
             btnClientesE.Font = new Font("Century Gothic", 12F);
             btnClientesE.Image = (Image)resources.GetObject("btnClientesE.Image");
             btnClientesE.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClientesE.Location = new Point(26, 441);
+            btnClientesE.Location = new Point(23, 331);
+            btnClientesE.Margin = new Padding(3, 2, 3, 2);
             btnClientesE.Name = "btnClientesE";
-            btnClientesE.Size = new Size(291, 64);
+            btnClientesE.Size = new Size(255, 48);
             btnClientesE.TabIndex = 1;
             btnClientesE.Text = "Clientes";
             btnClientesE.UseVisualStyleBackColor = false;
@@ -279,9 +289,10 @@
             btnEstoqueE.ForeColor = Color.Black;
             btnEstoqueE.Image = (Image)resources.GetObject("btnEstoqueE.Image");
             btnEstoqueE.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEstoqueE.Location = new Point(26, 331);
+            btnEstoqueE.Location = new Point(23, 248);
+            btnEstoqueE.Margin = new Padding(3, 2, 3, 2);
             btnEstoqueE.Name = "btnEstoqueE";
-            btnEstoqueE.Size = new Size(291, 64);
+            btnEstoqueE.Size = new Size(255, 48);
             btnEstoqueE.TabIndex = 0;
             btnEstoqueE.Text = "Estoque";
             btnEstoqueE.UseVisualStyleBackColor = false;
@@ -292,9 +303,10 @@
             btnEditarE.FlatAppearance.BorderSize = 0;
             btnEditarE.FlatStyle = FlatStyle.Flat;
             btnEditarE.Font = new Font("Century Gothic", 10F);
-            btnEditarE.Location = new Point(785, 238);
+            btnEditarE.Location = new Point(687, 178);
+            btnEditarE.Margin = new Padding(3, 2, 3, 2);
             btnEditarE.Name = "btnEditarE";
-            btnEditarE.Size = new Size(107, 35);
+            btnEditarE.Size = new Size(94, 26);
             btnEditarE.TabIndex = 6;
             btnEditarE.Text = "Editar";
             btnEditarE.UseVisualStyleBackColor = false;
@@ -306,9 +318,10 @@
             btnExcluirE.FlatAppearance.BorderSize = 0;
             btnExcluirE.FlatStyle = FlatStyle.Flat;
             btnExcluirE.Font = new Font("Century Gothic", 10F);
-            btnExcluirE.Location = new Point(918, 238);
+            btnExcluirE.Location = new Point(803, 178);
+            btnExcluirE.Margin = new Padding(3, 2, 3, 2);
             btnExcluirE.Name = "btnExcluirE";
-            btnExcluirE.Size = new Size(107, 35);
+            btnExcluirE.Size = new Size(94, 26);
             btnExcluirE.TabIndex = 7;
             btnExcluirE.Text = "Excluir ";
             btnExcluirE.UseVisualStyleBackColor = false;
@@ -321,18 +334,21 @@
             groupBox2.Controls.Add(btnExcluirE);
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(label2);
-            groupBox2.Location = new Point(381, 21);
+            groupBox2.Location = new Point(333, 16);
+            groupBox2.Margin = new Padding(3, 2, 3, 2);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1055, 303);
+            groupBox2.Padding = new Padding(3, 2, 3, 2);
+            groupBox2.Size = new Size(923, 227);
             groupBox2.TabIndex = 33;
             groupBox2.TabStop = false;
             // 
             // panelCadastroE
             // 
             panelCadastroE.Controls.Add(groupBox1);
-            panelCadastroE.Location = new Point(342, 0);
+            panelCadastroE.Location = new Point(299, 0);
+            panelCadastroE.Margin = new Padding(3, 2, 3, 2);
             panelCadastroE.Name = "panelCadastroE";
-            panelCadastroE.Size = new Size(1136, 822);
+            panelCadastroE.Size = new Size(994, 616);
             panelCadastroE.TabIndex = 33;
             panelCadastroE.Visible = false;
             // 
@@ -347,9 +363,11 @@
             groupBox1.Controls.Add(txtNomeItemE);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(QuantidadeE);
-            groupBox1.Location = new Point(42, 41);
+            groupBox1.Location = new Point(37, 31);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1055, 396);
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(923, 297);
             groupBox1.TabIndex = 23;
             groupBox1.TabStop = false;
             // 
@@ -359,9 +377,10 @@
             btnVoltarE.FlatAppearance.BorderSize = 0;
             btnVoltarE.FlatStyle = FlatStyle.Flat;
             btnVoltarE.Font = new Font("Century Gothic", 10F);
-            btnVoltarE.Location = new Point(902, 334);
+            btnVoltarE.Location = new Point(789, 250);
+            btnVoltarE.Margin = new Padding(3, 2, 3, 2);
             btnVoltarE.Name = "btnVoltarE";
-            btnVoltarE.Size = new Size(107, 35);
+            btnVoltarE.Size = new Size(94, 26);
             btnVoltarE.TabIndex = 3;
             btnVoltarE.Text = "Voltar";
             btnVoltarE.UseVisualStyleBackColor = false;
@@ -371,9 +390,9 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(23, 23);
+            label4.Location = new Point(20, 17);
             label4.Name = "label4";
-            label4.Size = new Size(477, 29);
+            label4.Size = new Size(385, 23);
             label4.TabIndex = 20;
             label4.Text = "Gerencie seus materiais e aviamentos";
             // 
@@ -383,9 +402,10 @@
             btnSalvarE.FlatAppearance.BorderSize = 0;
             btnSalvarE.FlatStyle = FlatStyle.Flat;
             btnSalvarE.Font = new Font("Century Gothic", 10F);
-            btnSalvarE.Location = new Point(729, 334);
+            btnSalvarE.Location = new Point(638, 250);
+            btnSalvarE.Margin = new Padding(3, 2, 3, 2);
             btnSalvarE.Name = "btnSalvarE";
-            btnSalvarE.Size = new Size(107, 35);
+            btnSalvarE.Size = new Size(94, 26);
             btnSalvarE.TabIndex = 4;
             btnSalvarE.Text = "Salvar";
             btnSalvarE.UseVisualStyleBackColor = false;
@@ -395,9 +415,9 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 10F);
-            label6.Location = new Point(53, 172);
+            label6.Location = new Point(46, 129);
             label6.Name = "label6";
-            label6.Size = new Size(103, 21);
+            label6.Size = new Size(84, 19);
             label6.TabIndex = 3;
             label6.Text = "Nome Item";
             // 
@@ -405,9 +425,9 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Century Gothic", 10F);
-            label8.Location = new Point(744, 174);
+            label8.Location = new Point(651, 130);
             label8.Name = "label8";
-            label8.Size = new Size(96, 21);
+            label8.Size = new Size(79, 19);
             label8.TabIndex = 5;
             label8.Text = "Categoria";
             // 
@@ -415,46 +435,52 @@
             // 
             cmbCategoriaE.FormattingEnabled = true;
             cmbCategoriaE.Items.AddRange(new object[] { "Tecido", "Linha", "Aviamentos" });
-            cmbCategoriaE.Location = new Point(744, 202);
+            cmbCategoriaE.Location = new Point(651, 152);
+            cmbCategoriaE.Margin = new Padding(3, 2, 3, 2);
             cmbCategoriaE.Name = "cmbCategoriaE";
-            cmbCategoriaE.Size = new Size(238, 28);
+            cmbCategoriaE.Size = new Size(209, 23);
             cmbCategoriaE.TabIndex = 2;
+            cmbCategoriaE.KeyPress += cmbCategoriaE_KeyPress;
             // 
             // txtNomeItemE
             // 
-            txtNomeItemE.Location = new Point(49, 200);
+            txtNomeItemE.Location = new Point(43, 150);
+            txtNomeItemE.Margin = new Padding(3, 2, 3, 2);
             txtNomeItemE.Name = "txtNomeItemE";
-            txtNomeItemE.Size = new Size(238, 27);
+            txtNomeItemE.Size = new Size(209, 23);
             txtNomeItemE.TabIndex = 0;
+            txtNomeItemE.KeyPress += txtNomeItemE_KeyPress;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Century Gothic", 10F);
-            label7.Location = new Point(386, 174);
+            label7.Location = new Point(338, 130);
             label7.Name = "label7";
-            label7.Size = new Size(114, 21);
+            label7.Size = new Size(96, 19);
             label7.TabIndex = 4;
             label7.Text = "Quantidade";
             // 
             // QuantidadeE
             // 
-            QuantidadeE.Location = new Point(386, 202);
+            QuantidadeE.Location = new Point(338, 152);
+            QuantidadeE.Margin = new Padding(3, 2, 3, 2);
             QuantidadeE.Name = "QuantidadeE";
-            QuantidadeE.Size = new Size(235, 27);
+            QuantidadeE.Size = new Size(206, 23);
             QuantidadeE.TabIndex = 1;
             // 
             // TelaEstoque
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1475, 827);
+            ClientSize = new Size(1291, 620);
             Controls.Add(panelCadastroE);
             Controls.Add(panel1);
             Controls.Add(dgvEstoque);
             Controls.Add(panel2);
             Controls.Add(groupBox2);
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "TelaEstoque";
             ShowIcon = false;

@@ -81,9 +81,10 @@
             btnNovoClienteC.FlatStyle = FlatStyle.Flat;
             btnNovoClienteC.Font = new Font("Century Gothic", 12F);
             btnNovoClienteC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnNovoClienteC.Location = new Point(810, 45);
+            btnNovoClienteC.Location = new Point(709, 34);
+            btnNovoClienteC.Margin = new Padding(3, 2, 3, 2);
             btnNovoClienteC.Name = "btnNovoClienteC";
-            btnNovoClienteC.Size = new Size(215, 49);
+            btnNovoClienteC.Size = new Size(188, 37);
             btnNovoClienteC.TabIndex = 4;
             btnNovoClienteC.Text = "+ Novo Cliente";
             btnNovoClienteC.UseVisualStyleBackColor = false;
@@ -94,26 +95,27 @@
             panel2.BackColor = Color.White;
             panel2.Controls.Add(txtBuscaC);
             panel2.Controls.Add(pictureBox2);
-            panel2.Location = new Point(6, 142);
+            panel2.Location = new Point(5, 106);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1042, 63);
+            panel2.Size = new Size(912, 47);
             panel2.TabIndex = 23;
             // 
             // txtBuscaC
             // 
-            txtBuscaC.Location = new Point(75, 18);
-            txtBuscaC.Margin = new Padding(3, 4, 3, 4);
+            txtBuscaC.Location = new Point(66, 14);
             txtBuscaC.Name = "txtBuscaC";
-            txtBuscaC.Size = new Size(943, 29);
+            txtBuscaC.Size = new Size(826, 25);
             txtBuscaC.TabIndex = 5;
             txtBuscaC.TextChanged += txtBuscaC_TextChanged;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(9, 11);
+            pictureBox2.Location = new Point(8, 8);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(43, 39);
+            pictureBox2.Size = new Size(38, 29);
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
             // 
@@ -121,9 +123,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 16F, FontStyle.Bold);
-            label2.Location = new Point(15, 45);
+            label2.Location = new Point(13, 34);
             label2.Name = "label2";
-            label2.Size = new Size(312, 32);
+            label2.Size = new Size(255, 26);
             label2.TabIndex = 21;
             label2.Text = "Gerencie seus Clientes";
             // 
@@ -160,13 +162,14 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvClientes.DefaultCellStyle = dataGridViewCellStyle3;
             dgvClientes.EnableHeadersVisualStyles = false;
-            dgvClientes.Location = new Point(383, 425);
+            dgvClientes.Location = new Point(335, 319);
+            dgvClientes.Margin = new Padding(3, 2, 3, 2);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersVisible = false;
             dgvClientes.RowHeadersWidth = 45;
             dgvClientes.RowTemplate.Height = 40;
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClientes.Size = new Size(1055, 372);
+            dgvClientes.Size = new Size(923, 279);
             dgvClientes.TabIndex = 24;
             // 
             // panel1
@@ -180,8 +183,9 @@
             panel1.Controls.Add(btnEstoqueC);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(336, 827);
+            panel1.Size = new Size(294, 620);
             panel1.TabIndex = 28;
             // 
             // btnPedidosC
@@ -194,9 +198,10 @@
             btnPedidosC.Font = new Font("Century Gothic", 12F);
             btnPedidosC.Image = (Image)resources.GetObject("btnPedidosC.Image");
             btnPedidosC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPedidosC.Location = new Point(26, 671);
+            btnPedidosC.Location = new Point(23, 503);
+            btnPedidosC.Margin = new Padding(3, 2, 3, 2);
             btnPedidosC.Name = "btnPedidosC";
-            btnPedidosC.Size = new Size(291, 64);
+            btnPedidosC.Size = new Size(255, 48);
             btnPedidosC.TabIndex = 3;
             btnPedidosC.Text = "Pedidos";
             btnPedidosC.UseVisualStyleBackColor = false;
@@ -206,18 +211,19 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 13F, FontStyle.Bold);
-            label1.Location = new Point(47, 165);
+            label1.Location = new Point(41, 124);
             label1.Name = "label1";
-            label1.Size = new Size(253, 26);
+            label1.Size = new Size(207, 22);
             label1.TabIndex = 5;
             label1.Text = "Bem-vinda ao Sistema";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(26, 3);
+            pictureBox1.Location = new Point(23, 2);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(291, 172);
+            pictureBox1.Size = new Size(255, 129);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
@@ -232,9 +238,10 @@
             btnServicosC.Font = new Font("Century Gothic", 12F);
             btnServicosC.Image = (Image)resources.GetObject("btnServicosC.Image");
             btnServicosC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnServicosC.Location = new Point(26, 557);
+            btnServicosC.Location = new Point(23, 418);
+            btnServicosC.Margin = new Padding(3, 2, 3, 2);
             btnServicosC.Name = "btnServicosC";
-            btnServicosC.Size = new Size(291, 64);
+            btnServicosC.Size = new Size(255, 48);
             btnServicosC.TabIndex = 2;
             btnServicosC.Text = "Serviços";
             btnServicosC.UseVisualStyleBackColor = false;
@@ -250,9 +257,10 @@
             btnClientesC.Font = new Font("Century Gothic", 12F);
             btnClientesC.Image = (Image)resources.GetObject("btnClientesC.Image");
             btnClientesC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClientesC.Location = new Point(26, 444);
+            btnClientesC.Location = new Point(23, 333);
+            btnClientesC.Margin = new Padding(3, 2, 3, 2);
             btnClientesC.Name = "btnClientesC";
-            btnClientesC.Size = new Size(291, 64);
+            btnClientesC.Size = new Size(255, 48);
             btnClientesC.TabIndex = 1;
             btnClientesC.Text = "Clientes";
             btnClientesC.UseVisualStyleBackColor = false;
@@ -268,9 +276,10 @@
             btnEstoqueC.ForeColor = Color.Black;
             btnEstoqueC.Image = (Image)resources.GetObject("btnEstoqueC.Image");
             btnEstoqueC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEstoqueC.Location = new Point(26, 331);
+            btnEstoqueC.Location = new Point(23, 248);
+            btnEstoqueC.Margin = new Padding(3, 2, 3, 2);
             btnEstoqueC.Name = "btnEstoqueC";
-            btnEstoqueC.Size = new Size(291, 64);
+            btnEstoqueC.Size = new Size(255, 48);
             btnEstoqueC.TabIndex = 0;
             btnEstoqueC.Text = "Estoque";
             btnEstoqueC.UseVisualStyleBackColor = false;
@@ -282,9 +291,10 @@
             btnExcluirC.FlatAppearance.BorderSize = 0;
             btnExcluirC.FlatStyle = FlatStyle.Flat;
             btnExcluirC.Font = new Font("Century Gothic", 10F);
-            btnExcluirC.Location = new Point(918, 262);
+            btnExcluirC.Location = new Point(803, 196);
+            btnExcluirC.Margin = new Padding(3, 2, 3, 2);
             btnExcluirC.Name = "btnExcluirC";
-            btnExcluirC.Size = new Size(107, 35);
+            btnExcluirC.Size = new Size(94, 26);
             btnExcluirC.TabIndex = 6;
             btnExcluirC.Text = "Excluir ";
             btnExcluirC.UseVisualStyleBackColor = false;
@@ -296,9 +306,10 @@
             btnEditarC.FlatAppearance.BorderSize = 0;
             btnEditarC.FlatStyle = FlatStyle.Flat;
             btnEditarC.Font = new Font("Century Gothic", 10F);
-            btnEditarC.Location = new Point(785, 262);
+            btnEditarC.Location = new Point(687, 196);
+            btnEditarC.Margin = new Padding(3, 2, 3, 2);
             btnEditarC.Name = "btnEditarC";
-            btnEditarC.Size = new Size(107, 35);
+            btnEditarC.Size = new Size(94, 26);
             btnEditarC.TabIndex = 7;
             btnEditarC.Text = "Editar";
             btnEditarC.UseVisualStyleBackColor = false;
@@ -312,11 +323,9 @@
             groupBox1.Controls.Add(panel2);
             groupBox1.Controls.Add(btnExcluirC);
             groupBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(383, 23);
-            groupBox1.Margin = new Padding(3, 4, 3, 4);
+            groupBox1.Location = new Point(335, 17);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 4, 3, 4);
-            groupBox1.Size = new Size(1055, 324);
+            groupBox1.Size = new Size(923, 243);
             groupBox1.TabIndex = 31;
             groupBox1.TabStop = false;
             // 
@@ -324,18 +333,19 @@
             // 
             panelCadastroCliente.Controls.Add(label8);
             panelCadastroCliente.Controls.Add(CadastrarNovoCliente);
-            panelCadastroCliente.Location = new Point(342, 3);
+            panelCadastroCliente.Location = new Point(299, 2);
+            panelCadastroCliente.Margin = new Padding(3, 2, 3, 2);
             panelCadastroCliente.Name = "panelCadastroCliente";
-            panelCadastroCliente.Size = new Size(1128, 824);
+            panelCadastroCliente.Size = new Size(987, 618);
             panelCadastroCliente.TabIndex = 32;
             panelCadastroCliente.Visible = false;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(484, 450);
+            label8.Location = new Point(424, 338);
             label8.Name = "label8";
-            label8.Size = new Size(0, 20);
+            label8.Size = new Size(0, 15);
             label8.TabIndex = 5;
             // 
             // CadastrarNovoCliente
@@ -351,11 +361,9 @@
             CadastrarNovoCliente.Controls.Add(label7);
             CadastrarNovoCliente.Controls.Add(label6);
             CadastrarNovoCliente.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CadastrarNovoCliente.Location = new Point(65, 50);
-            CadastrarNovoCliente.Margin = new Padding(3, 4, 3, 4);
+            CadastrarNovoCliente.Location = new Point(57, 38);
             CadastrarNovoCliente.Name = "CadastrarNovoCliente";
-            CadastrarNovoCliente.Padding = new Padding(3, 4, 3, 4);
-            CadastrarNovoCliente.Size = new Size(995, 460);
+            CadastrarNovoCliente.Size = new Size(871, 345);
             CadastrarNovoCliente.TabIndex = 4;
             CadastrarNovoCliente.TabStop = false;
             // 
@@ -363,9 +371,9 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Century Gothic", 10F);
-            label10.Location = new Point(23, 58);
+            label10.Location = new Point(20, 44);
             label10.Name = "label10";
-            label10.Size = new Size(195, 21);
+            label10.Size = new Size(161, 19);
             label10.TabIndex = 23;
             label10.Text = "Gerencie seus clientes";
             // 
@@ -375,9 +383,10 @@
             btnVoltarC.FlatAppearance.BorderSize = 0;
             btnVoltarC.FlatStyle = FlatStyle.Flat;
             btnVoltarC.Font = new Font("Century Gothic", 10F);
-            btnVoltarC.Location = new Point(841, 406);
+            btnVoltarC.Location = new Point(736, 304);
+            btnVoltarC.Margin = new Padding(3, 2, 3, 2);
             btnVoltarC.Name = "btnVoltarC";
-            btnVoltarC.Size = new Size(107, 35);
+            btnVoltarC.Size = new Size(94, 26);
             btnVoltarC.TabIndex = 3;
             btnVoltarC.Text = "Voltar";
             btnVoltarC.UseVisualStyleBackColor = false;
@@ -389,9 +398,10 @@
             btnSalvarC.FlatAppearance.BorderSize = 0;
             btnSalvarC.FlatStyle = FlatStyle.Flat;
             btnSalvarC.Font = new Font("Century Gothic", 10F);
-            btnSalvarC.Location = new Point(704, 406);
+            btnSalvarC.Location = new Point(616, 304);
+            btnSalvarC.Margin = new Padding(3, 2, 3, 2);
             btnSalvarC.Name = "btnSalvarC";
-            btnSalvarC.Size = new Size(107, 35);
+            btnSalvarC.Size = new Size(94, 26);
             btnSalvarC.TabIndex = 4;
             btnSalvarC.Text = "Salvar";
             btnSalvarC.UseVisualStyleBackColor = false;
@@ -399,35 +409,37 @@
             // 
             // txtTelefoneC
             // 
-            txtTelefoneC.Location = new Point(53, 318);
-            txtTelefoneC.Margin = new Padding(3, 4, 3, 4);
+            txtTelefoneC.Location = new Point(46, 238);
+            txtTelefoneC.MaxLength = 11;
             txtTelefoneC.Name = "txtTelefoneC";
-            txtTelefoneC.Size = new Size(895, 29);
+            txtTelefoneC.Size = new Size(784, 25);
             txtTelefoneC.TabIndex = 2;
+            txtTelefoneC.KeyPress += txtTelefoneC_KeyPress;
             // 
             // txtCPF
             // 
-            txtCPF.Location = new Point(53, 235);
-            txtCPF.Margin = new Padding(3, 4, 3, 4);
+            txtCPF.Location = new Point(46, 176);
+            txtCPF.MaxLength = 11;
             txtCPF.Name = "txtCPF";
-            txtCPF.Size = new Size(895, 29);
+            txtCPF.Size = new Size(784, 25);
             txtCPF.TabIndex = 1;
+            txtCPF.TextChanged += txtCPF_TextChanged;
             // 
             // txtNomeC
             // 
-            txtNomeC.Location = new Point(53, 141);
-            txtNomeC.Margin = new Padding(3, 4, 3, 4);
+            txtNomeC.Location = new Point(46, 106);
             txtNomeC.Name = "txtNomeC";
-            txtNomeC.Size = new Size(895, 29);
+            txtNomeC.Size = new Size(784, 25);
             txtNomeC.TabIndex = 0;
+            txtNomeC.KeyPress += txtNomeC_KeyPress;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 9.75F);
-            label5.Location = new Point(53, 292);
+            label5.Location = new Point(46, 219);
             label5.Name = "label5";
-            label5.Size = new Size(80, 21);
+            label5.Size = new Size(61, 17);
             label5.TabIndex = 1;
             label5.Text = "Telefone";
             // 
@@ -435,9 +447,9 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 9.75F);
-            label4.Location = new Point(53, 116);
+            label4.Location = new Point(46, 87);
             label4.Name = "label4";
-            label4.Size = new Size(149, 21);
+            label4.Size = new Size(119, 17);
             label4.TabIndex = 0;
             label4.Text = "Nome Completo";
             // 
@@ -445,9 +457,9 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Century Gothic", 15F, FontStyle.Bold);
-            label7.Location = new Point(23, 29);
+            label7.Location = new Point(20, 22);
             label7.Name = "label7";
-            label7.Size = new Size(297, 29);
+            label7.Size = new Size(239, 23);
             label7.TabIndex = 2;
             label7.Text = "Cadastrar Novo Cliente";
             // 
@@ -455,23 +467,22 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 9.75F);
-            label6.Location = new Point(53, 209);
+            label6.Location = new Point(46, 157);
             label6.Name = "label6";
-            label6.Size = new Size(42, 21);
+            label6.Size = new Size(33, 17);
             label6.TabIndex = 1;
             label6.Text = "CPF";
             // 
             // TelaClientes
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1475, 827);
+            ClientSize = new Size(1291, 620);
             Controls.Add(panelCadastroCliente);
             Controls.Add(panel1);
             Controls.Add(dgvClientes);
             Controls.Add(groupBox1);
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "TelaClientes";
             ShowIcon = false;

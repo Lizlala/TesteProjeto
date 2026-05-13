@@ -260,7 +260,6 @@
             label7.Size = new Size(260, 23);
             label7.TabIndex = 2;
             label7.Text = "Cadastre-se nove usuário";
-            label7.Click += label7_Click;
             // 
             // label6
             // 
@@ -271,7 +270,6 @@
             label6.Size = new Size(52, 17);
             label6.TabIndex = 1;
             label6.Text = "Nome:";
-            label6.Click += label6_Click;
             // 
             // PainelUsuario
             // 
