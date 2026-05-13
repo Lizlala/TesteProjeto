@@ -4,7 +4,7 @@ namespace LogiN
 {
     public partial class Login : System.Windows.Forms.Form
     {
-        string conexao = "server=localhost; uid = root; PWd =; Database=fiodeouro;";
+        string conexao = "server=localhost; uid=root; PWd =; Database=fiodeouro;";
         public Login()
         {
             InitializeComponent();
@@ -27,20 +27,44 @@ namespace LogiN
             string usuario = txtUsuario.Text;
             string senha = txtSenha.Text;
 
+            MySqlConnection con = new MySqlConnection(conexao);
 
-            if (usuario == "usu" && senha == "1234")
+            try
             {
-                TelaEstoque principal = new TelaEstoque();
-                principal.Show();
-                this.Hide();
+                con.Open();
+
+                string sql = "SELECT * FROM Login_usuario WHERE nome=@nome AND senha=@senha";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+
+                cmd.Parameters.AddWithValue("@nome", usuario);
+                cmd.Parameters.AddWithValue("@senha", senha);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    TelaEstoque principal = new TelaEstoque();
+                    principal.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Usuário ou senha incorretos!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                con.Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Usuário ou senha incorretos!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro: " + ex.Message);
             }
         }
+            
+          
 
-        private void txtSenha_TextChanged(object sender, EventArgs e)
+
+
+
+private void txtSenha_TextChanged(object sender, EventArgs e)
         {
             txtSenha.PasswordChar = '*';
         }
@@ -61,7 +85,7 @@ namespace LogiN
             try
             {
                 con.Open();
-                string sql = "INSERT INTO Login_usuário(nome, cpf,senha) VALUES (@nome,@cpf,@senha);";
+                string sql = "INSERT INTO Login_usuario(nome, cpf,senha) VALUES (@nome,@cpf,@senha);";
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@nome", txtNome.Text);
                 cmd.Parameters.AddWithValue("@cpf", txtCpf.Text);
@@ -73,19 +97,20 @@ namespace LogiN
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Cadastro feito com sucesso, parabéns!");
             }
 
         }
 
-        private void btnVoltarS_Click(object sender, EventArgs e)
-        {
-            PainelUsuario.Visible = false;
-        }
 
         private void btncadastraL_Click_1(object sender, EventArgs e)
         {
-            PainelUsuario.Visible=true;
+            PainelUsuario.Visible = true;
+        }
+
+        private void btnVoltarS_Click_1(object sender, EventArgs e)
+        {
+            PainelUsuario.Visible = false;
         }
     }
 }

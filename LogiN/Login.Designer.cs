@@ -205,6 +205,7 @@
             btnVoltarS.TabIndex = 2;
             btnVoltarS.Text = "Voltar";
             btnVoltarS.UseVisualStyleBackColor = false;
+            btnVoltarS.Click += btnVoltarS_Click_1;
             // 
             // btnSalvarS
             // 
@@ -272,9 +273,9 @@
             PainelUsuario.Controls.Add(btnSalvarS);
             PainelUsuario.Controls.Add(label5);
             PainelUsuario.Controls.Add(txtCpf);
-            PainelUsuario.Location = new Point(428, -2);
+            PainelUsuario.Location = new Point(437, -2);
             PainelUsuario.Name = "PainelUsuario";
-            PainelUsuario.Size = new Size(493, 573);
+            PainelUsuario.Size = new Size(480, 558);
             PainelUsuario.TabIndex = 11;
             PainelUsuario.Visible = false;
             // 
