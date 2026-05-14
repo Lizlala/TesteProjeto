@@ -345,11 +345,22 @@ namespace LogiN
 
         private void txtValorS_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) &&
-            e.KeyChar != (char)8)
+            if (char.IsDigit(e.KeyChar))
             {
-                e.Handled = true;
+                return;
             }
+
+            if (e.KeyChar == (char)8)
+            {
+                return;
+            }
+
+            if (e.KeyChar == ',' && !txtValorS.Text.Contains(","))
+            {
+                return;
+            }
+
+            e.Handled = true;
         }
     }
 }
