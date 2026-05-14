@@ -112,6 +112,7 @@
             // 
             txtSenha.Location = new Point(543, 341);
             txtSenha.Margin = new Padding(3, 2, 3, 2);
+            txtSenha.MaxLength = 8;
             txtSenha.Multiline = true;
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(290, 26);
@@ -184,6 +185,7 @@
             // txtcadastroSenha
             // 
             txtcadastroSenha.Location = new Point(55, 263);
+            txtcadastroSenha.MaxLength = 8;
             txtcadastroSenha.Name = "txtcadastroSenha";
             txtcadastroSenha.Size = new Size(150, 23);
             txtcadastroSenha.TabIndex = 27;
@@ -218,6 +220,7 @@
             btnVoltarS.TabIndex = 2;
             btnVoltarS.Text = "Voltar";
             btnVoltarS.UseVisualStyleBackColor = false;
+            btnVoltarS.Click += btnVoltarS_Click_1;
             // 
             // btnSalvarS
             // 
@@ -237,9 +240,11 @@
             // txtCpf
             // 
             txtCpf.Location = new Point(55, 194);
+            txtCpf.MaxLength = 11;
             txtCpf.Name = "txtCpf";
             txtCpf.Size = new Size(150, 23);
             txtCpf.TabIndex = 1;
+            txtCpf.TextChanged += txtCpf_TextChanged;
             // 
             // label5
             // 
@@ -273,8 +278,8 @@
             // 
             // PainelUsuario
             // 
-            PainelUsuario.Controls.Add(label9);
             PainelUsuario.Controls.Add(label7);
+            PainelUsuario.Controls.Add(label9);
             PainelUsuario.Controls.Add(txtcadastroSenha);
             PainelUsuario.Controls.Add(label10);
             PainelUsuario.Controls.Add(txtNome);
@@ -283,9 +288,9 @@
             PainelUsuario.Controls.Add(btnSalvarS);
             PainelUsuario.Controls.Add(label5);
             PainelUsuario.Controls.Add(txtCpf);
-            PainelUsuario.Location = new Point(422, 1);
+            PainelUsuario.Location = new Point(425, 2);
             PainelUsuario.Name = "PainelUsuario";
-            PainelUsuario.Size = new Size(493, 573);
+            PainelUsuario.Size = new Size(480, 558);
             PainelUsuario.TabIndex = 11;
             PainelUsuario.Visible = false;
             // 
@@ -312,7 +317,7 @@
             EsqueceuSenhaPainel.Controls.Add(label11);
             EsqueceuSenhaPainel.Controls.Add(label8);
             EsqueceuSenhaPainel.Controls.Add(pictureBox3);
-            EsqueceuSenhaPainel.Location = new Point(422, 1);
+            EsqueceuSenhaPainel.Location = new Point(437, -5);
             EsqueceuSenhaPainel.Name = "EsqueceuSenhaPainel";
             EsqueceuSenhaPainel.Size = new Size(487, 565);
             EsqueceuSenhaPainel.TabIndex = 12;
@@ -353,6 +358,7 @@
             // txtSenhaE
             // 
             txtSenhaE.Location = new Point(136, 326);
+            txtSenhaE.MaxLength = 8;
             txtSenhaE.Name = "txtSenhaE";
             txtSenhaE.Size = new Size(290, 23);
             txtSenhaE.TabIndex = 7;
@@ -413,8 +419,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(917, 561);
-            Controls.Add(EsqueceuSenhaPainel);
             Controls.Add(PainelUsuario);
+            Controls.Add(EsqueceuSenhaPainel);
             Controls.Add(btncadastraL);
             Controls.Add(pictureBox1);
             Controls.Add(label4);

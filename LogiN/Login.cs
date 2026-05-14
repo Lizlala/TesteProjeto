@@ -9,7 +9,7 @@ namespace LogiN
 {
     public partial class Login : System.Windows.Forms.Form
     {
-        string conexao = "server=localhost; uid = root; PWd =; Database=fiodeouro;";
+        string conexao = "server=localhost; uid=root; PWd =; Database=fiodeouro;";
         public Login()
         {
             InitializeComponent();
@@ -43,19 +43,44 @@ namespace LogiN
             string usuario = txtUsuario.Text;
             string senha = txtSenha.Text;
 
+            MySqlConnection con = new MySqlConnection(conexao);
+
+            try
 
 
-            if (usuario == "Ad" && senha == "123")
             {
-                TelaEstoque principal = new TelaEstoque();
-                principal.Show();
-                this.Hide();
+                con.Open();
+
+                string sql = "SELECT * FROM Login_usuario WHERE nome=@nome and senha=@senha";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+
+                cmd.Parameters.AddWithValue("@nome", usuario);
+                cmd.Parameters.AddWithValue("@senha", senha);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    TelaEstoque principal = new TelaEstoque();
+                    principal.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Usuário ou senha incorretos!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                con.Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Usuário ou senha incorretos!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro: " + ex.Message);
             }
         }
+
+
+
+
+
 
         private void txtSenha_TextChanged(object sender, EventArgs e)
         {
@@ -65,11 +90,30 @@ namespace LogiN
 
         private void btnSalvarS_Click(object sender, EventArgs e)
         {
+
+            // Validação de campos vazios
+            if (string.IsNullOrWhiteSpace(txtNome.Text) ||
+                string.IsNullOrWhiteSpace(txtCpf.Text) ||
+                string.IsNullOrWhiteSpace(txtcadastroSenha.Text))
+            {
+                MessageBox.Show("Preencha todos os campos.", "Aviso",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validação de tamanho
+            if (txtCpf.Text.Length != 11 || txtcadastroSenha.Text.Length != 8)
+            {
+                MessageBox.Show(" CPF ou Senha inválidos.",
+                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             MySqlConnection con = new MySqlConnection(conexao);
             try
             {
                 con.Open();
-                string sql = "INSERT INTO Login_usuário(nome, cpf,senha) VALUES (@nome,@cpf,@senha);";
+                string sql = "INSERT INTO Login_usuario(nome, cpf,senha) VALUES (@nome,@cpf,@senha);";
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@nome", txtNome.Text);
                 cmd.Parameters.AddWithValue("@cpf", txtCpf.Text);
@@ -78,12 +122,20 @@ namespace LogiN
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Cadastro feito com sucesso, parabéns!");
                 con.Close();
+                if (string.IsNullOrWhiteSpace(txtNome.Text) ||
+                   string.IsNullOrWhiteSpace(txtCpf.Text) ||
+                   string.IsNullOrWhiteSpace(txtcadastroSenha.Text))
+
+                {
+                    MessageBox.Show("Preencha todos os campos.", "Aviso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
-
         }
 
         private void btncadastraL_Click_1(object sender, EventArgs e)
@@ -91,8 +143,6 @@ namespace LogiN
             PainelUsuario.Visible = true;
         }
 
-
-        //Referete ao esquecimento de senha.
         private void EqueceuSenha_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
             EsqueceuSenhaPainel.Visible = true;
@@ -108,7 +158,7 @@ namespace LogiN
         private void button1_Click(object sender, EventArgs e)
         {
 
-            
+
 
 
             if (string.IsNullOrWhiteSpace(txtTelefone.Text))
@@ -140,7 +190,7 @@ namespace LogiN
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -159,7 +209,7 @@ namespace LogiN
 
             EnviarEmail(txtTelefone.Text, novaSenha);
 
-            
+
 
             // Voltar para tela principal
             EsqueceuSenhaPainel.Visible = false;
@@ -189,9 +239,14 @@ namespace LogiN
             EsqueceuSenhaPainel.Visible = false;
         }
 
-        private void btnVoltarS_Click(object sender, EventArgs e)
+        private void btnVoltarS_Click_1(object sender, EventArgs e)
         {
             PainelUsuario.Visible = false;
+        }
+
+        private void txtCpf_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
