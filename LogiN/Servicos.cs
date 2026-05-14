@@ -62,15 +62,21 @@ namespace LogiN
         private void EstiloGrid()
         {
             dgvServicos.EnableHeadersVisualStyles = false;
+
+            // FONTES
             Font fontePadrao = new Font("Century Gothic", 10F, FontStyle.Regular);
             Font fonteCabecalho = new Font("Century Gothic", 10F, FontStyle.Bold);
+
+            // COR PADRÃO DO SISTEMA
             Color corSelecaoLinha = Color.FromArgb(191, 165, 187);
 
+            // FUNDO E BORDAS
             dgvServicos.BackgroundColor = Color.White;
             dgvServicos.GridColor = Color.White;
             dgvServicos.BorderStyle = BorderStyle.None;
             dgvServicos.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
+            // CABEÇALHO
             dgvServicos.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             dgvServicos.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
             dgvServicos.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.White;
@@ -79,6 +85,7 @@ namespace LogiN
             dgvServicos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvServicos.ColumnHeadersHeight = 35;
 
+            // CÉLULAS
             dgvServicos.DefaultCellStyle.BackColor = Color.White;
             dgvServicos.DefaultCellStyle.ForeColor = Color.Black;
             dgvServicos.DefaultCellStyle.SelectionBackColor = corSelecaoLinha;
@@ -86,31 +93,37 @@ namespace LogiN
             dgvServicos.DefaultCellStyle.Font = fontePadrao;
             dgvServicos.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
+            // LINHAS ALTERNADAS
             dgvServicos.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
             dgvServicos.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
             dgvServicos.AlternatingRowsDefaultCellStyle.SelectionBackColor = corSelecaoLinha;
             dgvServicos.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.Black;
             dgvServicos.AlternatingRowsDefaultCellStyle.Font = fontePadrao;
 
+            // COMPORTAMENTO
             dgvServicos.RowHeadersVisible = false;
             dgvServicos.ReadOnly = true;
             dgvServicos.AllowUserToAddRows = false;
             dgvServicos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvServicos.MultiSelect = false;
-            dgvServicos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            dgvServicos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvServicos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
             dgvServicos.RowTemplate.Height = 35;
             dgvServicos.ScrollBars = ScrollBars.Vertical;
 
+            // GARANTE PADRÃO NAS LINHAS
             foreach (DataGridViewRow row in dgvServicos.Rows)
             {
                 row.DefaultCellStyle.Font = fontePadrao;
             }
 
+            // 🔥 ESCONDE ID
             if (dgvServicos.Columns.Contains("Id_cadastro_servico"))
                 dgvServicos.Columns["Id_cadastro_servico"].Visible = false;
 
+            // 🔥 HEADERS PADRÃO
             if (dgvServicos.Columns.Contains("nome_servico"))
                 dgvServicos.Columns["nome_servico"].HeaderText = "Tipo de Serviço";
 
@@ -240,26 +253,39 @@ namespace LogiN
         {
             if (dgvServicos.CurrentRow != null)
             {
-                try
-                {
-                    int id = Convert.ToInt32(dgvServicos.CurrentRow.Cells["Id_cadastro_servico"].Value);
+                DialogResult confirmacao = MessageBox.Show(
+                    "Tem certeza que deseja excluir este serviço?",
+                    "Confirmação",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
-                    using (MySqlConnection conn = new MySqlConnection(conexao))
+                if (confirmacao == DialogResult.Yes)
+                {
+                    try
                     {
-                        conn.Open();
+                        int id = Convert.ToInt32(
+                            dgvServicos.CurrentRow.Cells["Id_cadastro_servico"].Value);
 
-                        string sql = "DELETE FROM cadastro_servico WHERE Id_cadastro_servico=@id";
-                        MySqlCommand cmd = new MySqlCommand(sql, conn);
-                        cmd.Parameters.AddWithValue("@id", id);
+                        using (MySqlConnection conn = new MySqlConnection(conexao))
+                        {
+                            conn.Open();
 
-                        cmd.ExecuteNonQuery();
+                            string sql = "DELETE FROM cadastro_servico WHERE Id_cadastro_servico=@id";
+                            MySqlCommand cmd = new MySqlCommand(sql, conn);
+                            cmd.Parameters.AddWithValue("@id", id);
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show("Serviço excluído com sucesso!");
+
+                        CarregarServicos();
                     }
-
-                    CarregarServicos();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro REAL ao excluir:\n" + ex.ToString());
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao excluir:\n" + ex.ToString());
+                    }
                 }
             }
             else

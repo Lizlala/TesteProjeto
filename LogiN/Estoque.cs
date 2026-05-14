@@ -211,20 +211,33 @@ namespace LogiN
         {
             if (dgvEstoque.CurrentRow != null)
             {
-                int id = Convert.ToInt32(dgvEstoque.CurrentRow.Cells["Id_estoque"].Value);
+                DialogResult confirmacao = MessageBox.Show(
+                    "Tem certeza que deseja excluir este item do estoque?",
+                    "Confirmação",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
-                using (MySqlConnection conn = new MySqlConnection(conexao))
+                if (confirmacao == DialogResult.Yes)
                 {
-                    conn.Open();
+                    int id = Convert.ToInt32(
+                        dgvEstoque.CurrentRow.Cells["Id_estoque"].Value);
 
-                    string sql = "DELETE FROM Estoque WHERE Id_estoque=@id";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@id", id);
+                    using (MySqlConnection conn = new MySqlConnection(conexao))
+                    {
+                        conn.Open();
 
-                    cmd.ExecuteNonQuery();
+                        string sql = "DELETE FROM Estoque WHERE Id_estoque=@id";
+                        MySqlCommand cmd = new MySqlCommand(sql, conn);
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Item excluído com sucesso!");
+
+                    CarregarEstoque();
                 }
-
-                CarregarEstoque();
             }
             else
             {
