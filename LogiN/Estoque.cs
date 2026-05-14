@@ -28,7 +28,6 @@ namespace LogiN
             CarregarEstoque();
         }
 
-        // ================= CARREGAR =================
         private void CarregarEstoque()
         {
             try
@@ -53,38 +52,83 @@ namespace LogiN
             }
         }
 
-        // ================= ESTILO =================
         private void EstiloGrid()
         {
             dgvEstoque.EnableHeadersVisualStyles = false;
 
-            dgvEstoque.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
-            dgvEstoque.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+            // Fonte padrão
+            Font fontePadrao = new Font("Century Gothic", 10F, FontStyle.Regular);
+            Font fonteCabecalho = new Font("Century Gothic", 10F, FontStyle.Bold);
 
-            dgvEstoque.DefaultCellStyle.SelectionBackColor = Color.FromArgb(191, 165, 187);
-            dgvEstoque.DefaultCellStyle.SelectionForeColor = Color.Black;
+            // Cor seleção
+            Color corSelecaoLinha = Color.FromArgb(191, 165, 187);
 
-            dgvEstoque.RowHeadersVisible = false;
+            // FUNDO
+            dgvEstoque.BackgroundColor = Color.White;
+            dgvEstoque.GridColor = Color.White;
             dgvEstoque.BorderStyle = BorderStyle.None;
             dgvEstoque.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dgvEstoque.GridColor = Color.White;
 
-            dgvEstoque.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvEstoque.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvEstoque.MultiSelect = false;
+            // CABEÇALHO
+            dgvEstoque.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            dgvEstoque.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+            dgvEstoque.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.White;
+            dgvEstoque.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.Black;
+            dgvEstoque.ColumnHeadersDefaultCellStyle.Font = fonteCabecalho;
+
+            dgvEstoque.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvEstoque.ColumnHeadersHeight = 35;
+
+            // LINHAS
+            dgvEstoque.DefaultCellStyle.BackColor = Color.White;
+            dgvEstoque.DefaultCellStyle.ForeColor = Color.Black;
+            dgvEstoque.DefaultCellStyle.SelectionBackColor = corSelecaoLinha;
+            dgvEstoque.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgvEstoque.DefaultCellStyle.Font = fontePadrao;
+            dgvEstoque.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            // REMOVE ZEBRA
+            dgvEstoque.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+            dgvEstoque.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
+            dgvEstoque.AlternatingRowsDefaultCellStyle.SelectionBackColor = corSelecaoLinha;
+
+            dgvEstoque.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dgvEstoque.AlternatingRowsDefaultCellStyle.Font = fontePadrao;
+
+            // COMPORTAMENTO
+            dgvEstoque.RowHeadersVisible = false;
             dgvEstoque.ReadOnly = true;
             dgvEstoque.AllowUserToAddRows = false;
+            dgvEstoque.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            dgvEstoque.Columns["Id_estoque"].Visible = false;
+            dgvEstoque.MultiSelect = false;
 
-            dgvEstoque.Columns["Nome_item"].HeaderText = "Nome";
-            dgvEstoque.Columns["Quantidade"].HeaderText = "Quantidade";
-            dgvEstoque.Columns["Categoria"].HeaderText = "Categoria";
+            dgvEstoque.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvEstoque.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+            dgvEstoque.RowTemplate.Height = 35;
+
+            dgvEstoque.ScrollBars = ScrollBars.Vertical;
+
+            // GARANTE MESMA FONTE EM TODAS AS LINHAS
+            foreach (DataGridViewRow row in dgvEstoque.Rows)
+            {
+                row.DefaultCellStyle.Font = fontePadrao;
+            }
+
+            // COLUNAS
+            if (dgvEstoque.Columns.Contains("id_estoque"))
+                dgvEstoque.Columns["id_estoque"].Visible = false;
+
+            dgvEstoque.Columns["nome_item"].HeaderText = "Nome";
+            dgvEstoque.Columns["quantidade"].HeaderText = "Quantidade";
+            dgvEstoque.Columns["categoria"].HeaderText = "Categoria";
 
             dgvEstoque.ClearSelection();
         }
 
-        // ================= NOVO =================
         private void btnAbrirCadastroE_Click(object sender, EventArgs e)
         {
             modoEdicao = false;
@@ -97,7 +141,6 @@ namespace LogiN
             panelCadastroE.BringToFront();
         }
 
-        // ================= EDITAR =================
         private void btnEditarE_Click(object sender, EventArgs e)
         {
             if (dgvEstoque.CurrentRow != null)
@@ -119,7 +162,6 @@ namespace LogiN
             }
         }
 
-        // ================= SALVAR =================
         private void btnSalvarE_Click(object sender, EventArgs e)
         {
             string nome = txtNomeItemE.Text;
@@ -165,7 +207,6 @@ namespace LogiN
             CarregarEstoque();
         }
 
-        // ================= EXCLUIR =================
         private void btnExcluirE_Click(object sender, EventArgs e)
         {
             if (dgvEstoque.CurrentRow != null)
@@ -191,20 +232,17 @@ namespace LogiN
             }
         }
 
-        // ================= VOLTAR =================
         private void btnVoltarE_Click(object sender, EventArgs e)
         {
             panelCadastroE.Visible = false;
         }
 
-        // ================= BUSCA =================
         private void txtBuscaE_TextChanged(object sender, EventArgs e)
         {
             (dgvEstoque.DataSource as DataTable).DefaultView.RowFilter =
                 $"Nome_item LIKE '%{txtBuscaE.Text}%' OR Categoria LIKE '%{txtBuscaE.Text}%'";
         }
 
-        // ================= NAVEGAÇÃO =================
         private void btnClientesE_Click(object sender, EventArgs e)
         {
             new TelaClientes().Show();
@@ -221,6 +259,26 @@ namespace LogiN
         {
             new TelaPedidos().Show();
             this.Hide();
+        }
+
+        private void txtNomeItemE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) &&
+                !char.IsWhiteSpace(e.KeyChar) &&
+                e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cmbCategoriaE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) &&
+            !char.IsWhiteSpace(e.KeyChar) &&
+            e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
